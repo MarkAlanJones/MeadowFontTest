@@ -34,3 +34,5 @@ Then
 ```
 graphics.CurrentFont = new BPtypewrite12x20();
 ```
+
+The Windows application to generate these font files is called <a href="https://github.com/MarkAlanJones/FontConverter">FontConverter</a>
