@@ -17,7 +17,7 @@ These initial attempts target fixed width or Monospaced fonts.
 ## Consolas
 <a href="https://docs.microsoft.com/en-us/typography/font-list/consolas">Consolas</a> is a Microsoft font, used in visual studio, it may not be appropriate for open source use.
 
-so I found 3 open source fonts, which endedup with a much smaller character set
+so I found 3 open source fonts, which ended up with a much smaller character set
 
 ## IBM Plex Mono
 <a href="https://www.1001fonts.com/ibm-plex-mono-font.html">IBM Plex Mono</a> or on <a href="https://github.com/IBM/plex">Github</a>
