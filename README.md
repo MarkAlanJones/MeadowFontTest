@@ -32,5 +32,5 @@ Smaller set of characters.
 To use them in your meadow project, you just need to compile the font file into your application.
 Then 
 ```
-graphics.CurrentFont = new BPtypewrite12x20()
+graphics.CurrentFont = new BPtypewrite12x20();
 ```
