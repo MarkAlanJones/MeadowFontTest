@@ -1,8 +1,8 @@
 # MeadowFontTest
 Add new fonts to Meadow Graphics Library
 
-Here we show adding new fonts to the Meadow Graphics Library
-or 
+Here we demonstrate adding new fonts to the Meadow Graphics Library
+
 1. Consolas 
 2. IBM Plex Mono
 3. Sometype Mono
