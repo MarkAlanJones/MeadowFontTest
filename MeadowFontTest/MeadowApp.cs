@@ -123,19 +123,19 @@ namespace MeadowFontTest
                 yPos += 22;
 
                 graphics.CurrentFont = new Consolas12x20();
-                graphics.DrawText(0, yPos, "Consolas12x20: 0Og", Color.BlueViolet);
+                graphics.DrawText(0, yPos, "Consolas12x20: 0Og123@#$", Color.BlueViolet);
                 yPos += 22;
 
                 graphics.CurrentFont = new IBMPlexMono12x20();
-                graphics.DrawText(0, yPos, "IBMPlexMono12x20: 0Og", Color.DarkGoldenrod);
+                graphics.DrawText(0, yPos, "IBMPlexMono12x20: 0Og123@#$", Color.DarkGoldenrod);
                 yPos += 22;
 
                 graphics.CurrentFont = new SometypeMono12x20();
-                graphics.DrawText(0, yPos, "SometypeMono12x20: 0Og", Color.DarkOrange);
+                graphics.DrawText(0, yPos, "SometypeMono12x20: 0Og123@#$", Color.DarkOrange);
                 yPos += 22;
 
                 graphics.CurrentFont = new BPtypewrite12x20();
-                graphics.DrawText(0, yPos, "BPtypewrite12x20: 0Og", Color.BurlyWood);
+                graphics.DrawText(0, yPos, "BPtypewrite12x20: 0Og123@#$", Color.BurlyWood);
                 yPos += 22;
 
                 graphics.Show();
