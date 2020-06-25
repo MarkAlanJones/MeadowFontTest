@@ -11,7 +11,7 @@ Here we demonstrate adding new fonts to the Meadow Graphics Library
 The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/develop/Source/Meadow.Foundation.Libraries_and_Frameworks/Displays.GraphicsLibrary">Meadow.Foundation Graphics Library</a>
 supports drawing fonts in a few fixed width sizes.  4x8 8x8 8x12 12x16 12x20
 
-The smaller sizes may be appropriate for hand drawn fonts, but if we are converting higher quality desktop fonts, 12x20 is the only size that can support fornts with descenders.
+The smaller sizes may be appropriate for hand drawn fonts, but if we are converting higher quality desktop fonts, 12x20 is the only size that can support fonts with descenders.
 These initial attempts target fixed width or Monospaced fonts.
 
 ## Consolas
