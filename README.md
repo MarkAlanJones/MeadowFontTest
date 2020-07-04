@@ -19,24 +19,24 @@ These initial attempts target fixed width or Monospaced fonts.
 
 so I found 3 open source fonts, which ended up with a much smaller character set
 
-![Consolas Font](Consolas.png)
+![Consolas Font](ScreenShots/Consolas.png)
 
 ## IBM Plex Mono
 <a href="https://www.1001fonts.com/ibm-plex-mono-font.html">IBM Plex Mono</a> or on <a href="https://github.com/IBM/plex">Github</a>
 
-![IBM Plex Mono Font](IBMMonoPlex.png)
+![IBM Plex Mono Font](ScreenShots/IBMMonoPlex.png)
 
 ## Sometype Mono
 <a href="https://monospacedfont.com/">monospacedfont</a> or on <a href="https://github.com/dharmatype/Sometype-Mono">Github</a>
 
-![Sometype Mono](SometypeMono.png)
+![Sometype Mono](ScreenShots/SometypeMono.png)
 
 
 ## BP Typewrite
 <a href="https://www.1001fonts.com/bptypewrite-font.html">BP Typewrite</a> may be the most distinct of these fonts. It is based on an italic font stood upwrite.
 Smaller set of characters.
 
-![BP Typewrite](BPTypewrite.png)
+![BP Typewrite](ScreenShots/BPTypewrite.png)
 
 To use them in your meadow project, you just need to compile the font file into your application.
 Then 
