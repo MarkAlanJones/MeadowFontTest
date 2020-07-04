@@ -7,6 +7,7 @@ Here we demonstrate adding new fonts to the Meadow Graphics Library
 2. IBM Plex Mono
 3. Sometype Mono
 4. BP Typewrite
+5. 52 Adafruit GFX fonts
 
 The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/develop/Source/Meadow.Foundation.Libraries_and_Frameworks/Displays.GraphicsLibrary">Meadow.Foundation Graphics Library</a>
 supports drawing fonts in a few fixed width sizes.  4x8 8x8 8x12 12x16 12x20
@@ -45,3 +46,72 @@ graphics.CurrentFont = new BPtypewrite12x20();
 ```
 
 The Windows application to generate these font files is called <a href="https://github.com/MarkAlanJones/FontConverter">FontConverter</a>
+
+# GFX Fonts
+
+from <a href="https://github.com/adafruit/Adafruit-GFX-Library">Adafruit</a>. These are bitmap fonts, that are proportionatley spaced, and support text wrapping.
+I had to convert the C++ .h files into C#. There seems to be 3 font faces converted from Berkley Unix.
+
+1. **Free Mono**
+2. **Free Sans**
+3. **Free Serif**
+
+Each font has four typefaces: **Normal**, **Bold**, **Oblique** (or *Italic*), and **Bold Oblique** (or *Bold Italic*) 
+and appears in four sizes: 9pt, 12pt, 18pt, 24pt.
+
+## Free Mono
+
+| Normal     |      Bold     |  Oblique  | Bold Oblique   |
+|:----------:|:-------------:|:---------:|:--------------:|
+|![Free Mono 9pt](ScreenShots/FreeMono9pt.png)   | ![Free Mono Bold 9pt](ScreenShots/FreeMonoBold9pt.png)   |![Free Mono Oblique 9pt](ScreenShots/FreeMonoOblique9pt.png)  |![Free Mono Bold Oblique 9pt](ScreenShots/FreeMonoBoldOblique9pt.png)  |
+|![Free Mono 12pt](ScreenShots/FreeMono12pt.png) | ![Free Mono Bold  12pt](ScreenShots/FreeMonoBold12pt.png) |![Free Mono Oblique 12pt](ScreenShots/FreeMonoOblique12pt.png)|![Free Mono Bold Oblique 12pt](ScreenShots/FreeMonoBoldOblique12pt.png)|
+|![Free Mono 18pt](ScreenShots/FreeMono18pt.png) | ![Free Mono Bold  18pt](ScreenShots/FreeMonoBold18pt.png) |![Free Mono Oblique 18pt](ScreenShots/FreeMonoOblique18pt.png) |![Free Mono Bold Oblique 18pt](ScreenShots/FreeMonoBoldOblique18pt.png) |
+|![Free Mono 24pt](ScreenShots/FreeMono24pt.png) | ![Free Mono Bold  24pt](ScreenShots/FreeMonoBold24pt.png) |![Free Mono Oblique 24pt](ScreenShots/FreeMonoOblique24pt.png)|![Free Mono Bold Oblique 24pt](ScreenShots/FreeMonoBoldOblique24pt.png)|
+
+## Free Sans
+
+| Normal     |      Bold     |  Oblique  | Bold Oblique   |
+|:----------:|:-------------:|:---------:|:--------------:|
+|![Free Sans 9pt](ScreenShots/FreeSans9pt.png)   | ![Free Sans Bold 9pt](ScreenShots/FreeSansBold9pt.png)   |![Free Sans Oblique 9pt](ScreenShots/FreeSansOblique9pt.png)  |![Free Sans Bold Oblique 9pt](ScreenShots/FreeSansBoldOblique9pt.png)  |
+|![Free Sans 12pt](ScreenShots/FreeSans12pt.png) | ![Free Sans Bold  12pt](ScreenShots/FreeSansBold12pt.png) |![Free Sans Oblique 12pt](ScreenShots/FreeSansOblique12pt.png)|![Free Sans Bold Oblique 12pt](ScreenShots/FreeSansBoldOblique12pt.png)|
+|![Free Sans 18pt](ScreenShots/FreeSans18pt.png) | ![Free Sans Bold  18pt](ScreenShots/FreeSansBold18pt.png) |![Free Sans Oblique 18pt](ScreenShots/FreeSansOblique18pt.png) |![Free Sans Bold Oblique 18pt](ScreenShots/FreeSansBoldOblique18pt.png) |
+|![Free Sans 24pt](ScreenShots/FreeSans24pt.png) | ![Free Sans Bold  24pt](ScreenShots/FreeSansBold24pt.png) |![Free Sans Oblique 24pt](ScreenShots/FreeSansOblique24pt.png)|![Free Sans Bold Oblique 24pt](ScreenShots/FreeSansBoldOblique24pt.png)|
+
+## Free Serif
+
+| Normal     |      Bold     |  Italic   | Bold Italic    | 
+|:----------:|:-------------:|:---------:|:--------------:|
+|![Free Serif 9pt](ScreenShots/FreeSerif9pt.png)   | ![Free Serif Bold 9pt](ScreenShots/FreeSerifBold9pt.png)   |![Free Serif Italic 9pt](ScreenShots/FreeSerifItalic9pt.png)  |![Free Serif Bold Italic 9pt](ScreenShots/FreeSerifBoldItalic9pt.png)  |
+|![Free Serif 12pt](ScreenShots/FreeSerif12pt.png) | ![Free Serif Bold  12pt](ScreenShots/FreeSerifBold12pt.png) |![Free Serif Italic 12pt](ScreenShots/FreeSerifItalic12pt.png)|![Free Serif Bold Italic 12pt](ScreenShots/FreeSerifBoldItalic12pt.png)|
+|![Free Serif 18pt](ScreenShots/FreeSerif18pt.png) | ![Free Serif Bold  18pt](ScreenShots/FreeSerifBold18pt.png) |![Free Serif Italic 18pt](ScreenShots/FreeSerifItalic18pt.png) |![Free Serif Bold Italic 18pt](ScreenShots/FreeSerifBoldItalic18pt.png) |
+|![Free Serif 24pt](ScreenShots/FreeSerif24pt.png) | ![Free Serif Bold  24pt](ScreenShots/FreeSerifBold24pt.png) |![Free Serif Italic 24pt](ScreenShots/FreeSerifItalic24pt.png)|![Free Serif Bold Italic 24pt](ScreenShots/FreeSerifBolditalic24pt.png)|
+
+There are also 4 additional extra small fonts, in one typeface each. Other than the TomThumb font, only the lower 7bit ascii characters are available.
+I have included a 4 times zoom of each of the small fonts so you can see the detail (or lack thereof).
+
+## Org_01
+![Org_01](ScreenShots/Org_01.png)
+![Org_01](ScreenShots/Org_01-4x.png)
+
+## Picopixel
+![Pico Pixel](ScreenShots/Picopixel.png)
+![Pico Pixel](ScreenShots/Picopixel-4x.png)
+
+## Tiny3x3
+![Tiny3x3](ScreenShots/Tiny3x3a2pt.png)
+![Tiny3x3](ScreenShots/Tiny3x3a2pt-4x.png)
+
+## Tom Thumb
+![Tom Thumb](ScreenShots/TomThumb.png)
+![Tom Thumb](ScreenShots/TomThumb-4x.png)
+
+
+
+To use GFX fonts in your Meadow project, you need to include the **GFXFontBase.cs** and the **GraphicsLibraryEX.cs** as well as any of the GFX fonts you want to use.
+**DrawGFXText** is used to display text. The x,y origin is for the left baseline of the character (not the upper left). The **WrapText** property can be enabled and text will be written on the next line if it doesn't fit on the current line. 
+ 
+
+More GFX font info: <a href="https://learn.adafruit.com/adafruit-gfx-graphics-library/using-fonts">Here</a> and 
+<a href="https://glenviewsoftware.com/projects/products/adafonteditor/adafruit-gfx-font-format/">Here</a>
+
+There are certainly other GFX fonts avaialble, including tools to convert to the GFX format. Adafruit says they will not expand the base fonts available on Github any further.
