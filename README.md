@@ -107,7 +107,7 @@ I have included a 4 times zoom of each of the small fonts so you can see the det
 
 
 
-To use GFX fonts in your Meadow project, you need to include the **GFXFontBase.cs** and the **GraphicsLibraryEX.cs** as well as any of the GFX fonts you want to use.
+To use GFX fonts in your Meadow project, you need to include the **GFXFontBase.cs** and the **GraphicsLibraryEx.cs** as well as any of the GFX fonts you want to use.
 **DrawGFXText** is used to display text. The x,y origin is for the left baseline of the character (not the upper left). The **WrapText** property can be enabled and text will be written on the next line if it doesn't fit on the current line. 
  
 
