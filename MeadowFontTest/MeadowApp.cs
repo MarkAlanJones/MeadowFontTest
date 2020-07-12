@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Messaging;
 using System.Threading;
 using Meadow;
 using Meadow.Devices;
@@ -256,6 +257,8 @@ namespace MeadowFontTest
             {
                 // Garbage Collector knows about memory use 
                 long totalmem = GC.GetTotalMemory(false);  // forcing Garbage collection hangs app!
+                // the total number of bytes allocated on the managed heap during the lifetime of a thread,
+                // NOT the total number of bytes that have survived garbage collection. 
                 long allocated = GC.GetAllocatedBytesForCurrentThread();
                 Console.WriteLine($"GC Total {totalmem:n0} bytes and Thread allocated {allocated:n0} bytes");
             }
