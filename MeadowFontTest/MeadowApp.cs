@@ -114,6 +114,7 @@ namespace MeadowFontTest
                 graphics.Clear();
 
                 graphics.CurrentFont = font;
+                Console.WriteLine(font.GetType().Name);
 
                 if (font is GFXFontBase)
                 {
@@ -128,6 +129,8 @@ namespace MeadowFontTest
                     graphics.CurrentFont = font;
                     CharacterTest(c);
                 }
+
+                MonitorMemory();
                 Thread.Sleep(1000);
             }
 
@@ -247,6 +250,14 @@ namespace MeadowFontTest
 
                 graphics.Show();
                 Console.WriteLine();
+            }
+
+            void MonitorMemory()
+            {
+                // Garbage Collector knows about memory use 
+                long totalmem = GC.GetTotalMemory(false);  // forcing Garbabe collection hangs app!
+                long allocated = GC.GetAllocatedBytesForCurrentThread();
+                Console.WriteLine($"GC Total {totalmem:n0} bytes and Thread allocated {allocated:n0} bytes");
             }
 
         }
