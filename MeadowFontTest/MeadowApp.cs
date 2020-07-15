@@ -1,13 +1,12 @@
-﻿using System;
-using System.Runtime.Remoting.Messaging;
-using System.Threading;
-using Meadow;
+﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation;
 using Meadow.Foundation.Displays.Tft;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.MyExtensions;
 using Meadow.Hardware;
+using System;
+using System.Threading;
 
 namespace MeadowFontTest
 {
@@ -18,6 +17,7 @@ namespace MeadowFontTest
         const int displayWidth = 240;
         const int displayHeight = 240;
 
+        long allocated;
 
         public MeadowApp()
         {
@@ -154,8 +154,10 @@ namespace MeadowFontTest
 
                 graphics.Rotation = GraphicsLibrary.RotationType._270Degrees;
                 graphics.Stroke = 1;
+                
+                allocated = GC.GetAllocatedBytesForCurrentThread();
 
-                display.Clear();
+                graphics.Clear();
             }
 
 
@@ -258,9 +260,10 @@ namespace MeadowFontTest
                 // Garbage Collector knows about memory use 
                 long totalmem = GC.GetTotalMemory(false);  // forcing Garbage collection hangs app!
                 // the total number of bytes allocated on the managed heap during the lifetime of a thread,
-                // NOT the total number of bytes that have survived garbage collection. 
-                long allocated = GC.GetAllocatedBytesForCurrentThread();
-                Console.WriteLine($"GC Total {totalmem:n0} bytes and Thread allocated {allocated:n0} bytes");
+                // NOT the total number of bytes that have survived garbage collection.               
+                long used = GC.GetAllocatedBytesForCurrentThread() - allocated;
+                Console.WriteLine($"GC Total {totalmem:n0} bytes and last font allocated {used:n0} bytes");
+                allocated = GC.GetAllocatedBytesForCurrentThread();
             }
 
         }
