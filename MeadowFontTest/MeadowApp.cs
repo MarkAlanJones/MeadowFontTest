@@ -31,6 +31,9 @@ namespace MeadowFontTest
                 Showfont(new SometypeMono12x20(), Color.DeepPink);
                 Showfont(new BPtypewrite12x20(), Color.DarkGreen);
 
+                Showfont(new MSFont8x8(), Color.LightYellow);
+                Showfont(new MSFont8x15(), Color.LightYellow);
+
                 FontTest();
                 Thread.Sleep(5000);
 
