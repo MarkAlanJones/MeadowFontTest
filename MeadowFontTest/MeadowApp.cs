@@ -32,6 +32,7 @@ namespace MeadowFontTest
                 Showfont(new IBMPlexMono12x20(), Color.DeepSkyBlue);
                 Showfont(new SometypeMono12x20(), Color.DeepPink);
                 Showfont(new BPtypewrite12x20(), Color.DarkGreen);
+                Showfont(new ibm327012x20(), Color.AliceBlue);
 
                 Showfont(new MSFont8x8(), Color.LightYellow);
                 Showfont(new MSFont8x15(), Color.LightYellow);
@@ -138,7 +139,7 @@ namespace MeadowFontTest
                 graphics.CurrentFont = font;
                 GFXCharacterTest(c);
             }
-            else if (font.GetType().Name == "Petscii8x8")
+            else if (font.GetType().Name == "Petscii8x8" || font.GetType().Name == "ibm327012x20")
             {
                 graphics.CurrentFont = font;
                 UnicodeTest(c);
@@ -248,6 +249,10 @@ namespace MeadowFontTest
 
             graphics.CurrentFont = new BPtypewrite12x20();
             graphics.DrawText(0, yPos, "BPtypewrite12x20: 0Og123@#$", Color.BurlyWood);
+            yPos += 22;
+
+            graphics.CurrentFont = new ibm327012x20();
+            graphics.DrawText(0, yPos, "ibm327012x20: 0Og123@#$", Color.AliceBlue);
             yPos += 22;
 
             graphics.CurrentFont = new MSFont8x8();
