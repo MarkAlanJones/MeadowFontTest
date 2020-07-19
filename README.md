@@ -8,6 +8,7 @@ Here we demonstrate adding new fonts to the Meadow Graphics Library
 3. Sometype Mono
 4. BP Typewrite
 5. 52 Adafruit GFX fonts
+6. Microsoft .NetMF fixed fonts
 
 The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/develop/Source/Meadow.Foundation.Libraries_and_Frameworks/Displays.GraphicsLibrary">Meadow.Foundation Graphics Library</a>
 supports drawing fonts in a few fixed width sizes.  
@@ -119,3 +120,15 @@ More GFX font info: <a href="https://learn.adafruit.com/adafruit-gfx-graphics-li
 <a href="https://glenviewsoftware.com/projects/products/adafonteditor/adafruit-gfx-font-format/">Here</a>
 
 There are certainly other GFX fonts avaialble, including tools to convert to the GFX format. Adafruit says they will not expand the base fonts available on Github any further.
+
+# Microsoft .NetMF fixed fonts
+
+I found these in the abandoned <a href="https://github.com/NETMF/netmf-interpreter/tree/dev/DeviceCode/Drivers/Display/TextFonts">.net Micro Framework</a> repository. They include a few extended characters. The way the character bitmaps are laid out is much easier to hand edit if you want to.
+
+Converted from C++ these are compatible with the Meadow Graphics Library Fonts (just include the font file).
+
+## 8x8 
+![MSFont8x8](ScreenShots/MSFont8x8.png)
+
+## 8x15 
+![MSFont8x15](ScreenShots/MSFont8x15.png)
