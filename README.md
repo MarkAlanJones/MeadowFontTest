@@ -9,6 +9,7 @@ Here we demonstrate adding new fonts to the Meadow Graphics Library
 4. BP Typewrite
 5. 52 Adafruit GFX fonts
 6. Microsoft .NetMF fixed fonts
+7. Petscii - character ROM dump
 
 The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/develop/Source/Meadow.Foundation.Libraries_and_Frameworks/Displays.GraphicsLibrary">Meadow.Foundation Graphics Library</a>
 supports drawing fonts in a few fixed width sizes.  
@@ -132,3 +133,21 @@ Converted from C++ these are compatible with the Meadow Graphics Library Fonts (
 
 ## 8x15 
 ![MSFont8x15](ScreenShots/MSFont8x15.png)
+
+# Petscii 8x8
+
+The OG personal computer circa 1977 was the Commodore PET - 6502 processor, cassette deck, green text enclosed in an industrial steel case.
+This version of the ROM is from the SuperPet a weird work from home offshoot that had Pascal, Fortran and APL built in along with the MSBasic.
+So along with the famous line drawing characters, we also get some APL symbols and several other rare math symbols.
+The character set is mapped to unicode (rather than the original shiftable 7bit ascii). See the comments for which unicode character to use.
+
+from <a href="http://www.6502.org/users/sjgray/computer/cbmchr/cbmchr.html">6502.org</a>
+
+## Petscii8x8
+![Petscii8x8](ScreenShots/Petscii8x8.png)
+
+and don't forget, the Meadow Graphics Library can also display fonts at 2X or 3X
+here is petscii at 2X (16x16)
+
+![Petscii8x82X](ScreenShots/Petscii8x82X.png)
+
