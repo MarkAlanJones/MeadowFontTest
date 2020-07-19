@@ -7,6 +7,7 @@ using Meadow.Foundation.MyExtensions;
 using Meadow.Hardware;
 using System;
 using System.Threading;
+using static Meadow.Foundation.Graphics.GraphicsLibrary;
 
 namespace MeadowFontTest
 {
@@ -33,6 +34,9 @@ namespace MeadowFontTest
 
                 Showfont(new MSFont8x8(), Color.LightYellow);
                 Showfont(new MSFont8x15(), Color.LightYellow);
+
+                // unicode PETscii with symbols from 1977 Commodore PET
+                Showfont(new Petscii8x8(), Color.Green);
 
                 FontTest();
                 Thread.Sleep(5000);
@@ -124,9 +128,14 @@ namespace MeadowFontTest
                 {
                     graphics.CurrentFont = new Font8x12();
                     graphics.DrawText(3, 3, font.GetType().Name.Replace("GFXFont_", "").Replace("7b", ""), Color.LawnGreen);
-                   
+
                     graphics.CurrentFont = font;
                     GFXCharacterTest(c);
+                }
+                else if (font.GetType().Name == "Petscii8x8")
+                {
+                    graphics.CurrentFont = font;
+                    UnicodeTest(c);
                 }
                 else
                 {
@@ -157,12 +166,11 @@ namespace MeadowFontTest
 
                 graphics.Rotation = GraphicsLibrary.RotationType._270Degrees;
                 graphics.Stroke = 1;
-                
+
                 allocated = GC.GetAllocatedBytesForCurrentThread();
 
                 graphics.Clear();
             }
-
 
             void CharacterTest(Color c)
             {
@@ -256,6 +264,56 @@ namespace MeadowFontTest
 
                 graphics.Show();
                 Console.WriteLine();
+            }
+
+            // Display all characters upto FFFF skip blanks
+            // can display all characters at 1X, 2X or 3X
+            void UnicodeTest(Color c, ScaleFactor x = ScaleFactor.X1)
+            {
+                graphics.Clear();
+                string msg = string.Empty;
+
+                int yPos = 12;
+                int count = 0;
+
+                for (int i = 32; i <= 0xFFFF; i++)
+                {
+                    if (i == 127)
+                        i += 33;
+
+                    if (count >= ((displayWidth - 24) / graphics.CurrentFont.Width / (int)x) || i >= 0xFFFF)
+                    {
+                        graphics.DrawText(12, yPos, msg, c, x);
+                        Console.WriteLine(msg);
+                        yPos += (int)(graphics.CurrentFont.Height * (int)x * 1.5);
+
+                        count = 0;
+                        msg = string.Empty;
+                    }
+
+                    if (i == 0x20 || CharExists(i))
+                    {
+                        msg += (char)(i);
+                        count++;
+                    }
+                }
+
+                graphics.Show();
+                Console.WriteLine();
+            }
+
+            // font returns space for missing chacters 
+            // false for all 0 - true when none zero byte is found
+            bool CharExists(int i)
+            {
+                var raw = graphics.CurrentFont[(char)i];
+
+                foreach (byte b in raw)
+                {
+                    if (b != 0)
+                        return true;
+                }
+                return false;
             }
 
             void MonitorMemory()
