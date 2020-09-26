@@ -7,9 +7,10 @@ Here we demonstrate adding new fonts to the Meadow Graphics Library
 2. IBM Plex Mono
 3. Sometype Mono
 4. BP Typewrite
-5. 52 Adafruit GFX fonts
-6. Microsoft .NetMF fixed fonts
-7. Petscii - character ROM dump
+5. IBM 3270
+6. 52 Adafruit GFX fonts
+7. Microsoft .NetMF fixed fonts
+8. Petscii - character ROM dump
 
 The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/develop/Source/Meadow.Foundation.Libraries_and_Frameworks/Displays.GraphicsLibrary">Meadow.Foundation Graphics Library</a>
 supports drawing fonts in a few fixed width sizes.  
@@ -38,12 +39,20 @@ so I found 3 open source fonts, which ended up with a much smaller character set
 
 ![Sometype Mono](ScreenShots/SometypeMono.png)
 
-
 ## BP Typewrite
 <a href="https://www.1001fonts.com/bptypewrite-font.html">BP Typewrite</a> may be the most distinct of these fonts. It is based on an italic font stood upwrite.
 Smaller set of characters.
 
 ![BP Typewrite](ScreenShots/BPTypewrite.png)
+
+## IBM 3270
+
+A favourite for terminal fonts or code editing. This version comes from an OpenType font converted back to bitmap 12x20.
+It has many of the drawing symbols of the petscii font - at a larger size, and at less precision. This font has many unicode characters hence the double size screenshot.
+
+![IBM327012x20](ScreenShots/IBM327012x20.png)
+
+from <a href="https://github.com/rbanffy/3270font">github</a>
 
 To use them in your meadow project, you just need to compile the font file into your application.
 Then 
