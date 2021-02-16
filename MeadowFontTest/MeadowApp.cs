@@ -167,7 +167,7 @@ namespace MeadowFontTest
                 chipSelectPin: null,
                 dcPin: Device.Pins.D01,
                 resetPin: Device.Pins.D00,
-                width: (uint)displayWidth, height: (uint)displayHeight);
+                width: displayWidth, height: displayHeight);
 
             graphics = new GraphicsLibraryEx(display);
 
