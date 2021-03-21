@@ -215,21 +215,29 @@ namespace MeadowFontTest
 
             int yPos = 0;
 
+            graphics.CurrentFont = new Font4x6(); //new b4.6
+            graphics.DrawText(0, yPos, "Font_4x6: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmno123@#$%", Color.Cornsilk);
+            yPos += 8;
+
             graphics.CurrentFont = new Font4x8();
-            graphics.DrawText(0, yPos, "Font_4x8: ABCdef123@#$", Color.Red);
-            yPos += 12;
+            graphics.DrawText(0, yPos, "Font_4x8: ABCDEFGHIJKLMNOPQRSTUVWXabcdefghijklmno123@#$%", Color.Red);
+            yPos += 10;
+
+            graphics.CurrentFont = new Font6x8(); //new b.4.6
+            graphics.DrawText(0, yPos, "Font_4x8: ABCDEFGHIJKLMNOPabcdefghi123@#$%", Color.Aquamarine);
+            yPos += 10;
 
             graphics.CurrentFont = new Font8x8();
-            graphics.DrawText(0, yPos, "Font_8x8: ABCdefg123@#$%", Color.Orange);
-            yPos += 12;
+            graphics.DrawText(0, yPos, "Font_8x8: ABCDEFabcdefg123@#$%", Color.Orange);
+            yPos += 10;
 
             graphics.CurrentFont = new Font8x12();
-            graphics.DrawText(0, yPos, "Font_8x12: ABCdefg123@#$", Color.Yellow);
-            yPos += 16;
+            graphics.DrawText(0, yPos, "Font_8x12: ABCDEFabcde123@#$%", Color.Yellow);
+            yPos += 14;
 
             graphics.CurrentFont = new Font12x16();
             graphics.DrawText(0, yPos, "Font_12x16: ABCdefg123@#$", Color.LawnGreen);
-            yPos += 20;
+            yPos += 18;
 
             graphics.CurrentFont = new Font12x20();
             graphics.DrawText(0, yPos, "Font_12x20: ABCdef123@#$", Color.Cyan);
@@ -257,7 +265,7 @@ namespace MeadowFontTest
 
             graphics.CurrentFont = new MSFont8x8();
             graphics.DrawText(0, yPos, "MSFont8x8: ABCdefg12345@#$%Ø¶Æ" + (char)0xa5, Color.Goldenrod);
-            yPos += 12;
+            yPos += 10;
 
             graphics.CurrentFont = new MSFont8x15();
             graphics.DrawText(0, yPos, "MSFont8x15: ABCdefg12345@#$%Ø¶Æ" + (char)0xa5, Color.Gold);
