@@ -224,7 +224,7 @@ namespace MeadowFontTest
             yPos += 10;
 
             graphics.CurrentFont = new Font6x8(); //new b.4.6
-            graphics.DrawText(0, yPos, "Font_4x8: ABCDEFGHIJKLMNOPabcdefghi123@#$%", Color.Aquamarine);
+            graphics.DrawText(0, yPos, "Font_6x8: ABCDEFGHIJKLMNOPabcdefghi123@#$%", Color.Aquamarine);
             yPos += 10;
 
             graphics.CurrentFont = new Font8x8();
