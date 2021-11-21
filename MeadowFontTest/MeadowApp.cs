@@ -167,12 +167,16 @@ namespace MeadowFontTest
                 chipSelectPin: null,
                 dcPin: Device.Pins.D01,
                 resetPin: Device.Pins.D00,
-                width: displayWidth, height: displayHeight);
+                width: displayWidth, height: displayHeight)
+            {
+                IgnoreOutOfBoundsPixels = true
+            };
 
-            graphics = new GraphicsLibraryEx(display);
-
-            graphics.Rotation = GraphicsLibrary.RotationType._270Degrees;
-            graphics.Stroke = 1;
+            graphics = new GraphicsLibraryEx(display)
+            {
+                Rotation = RotationType._270Degrees,
+                Stroke = 1
+            };
 
             allocated = GC.GetAllocatedBytesForCurrentThread();
 
