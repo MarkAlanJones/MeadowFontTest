@@ -8,14 +8,13 @@ using Meadow.Hardware;
 using System;
 using System.Linq;
 using System.Threading;
-using static Meadow.Foundation.Graphics.GraphicsLibrary;
 
 namespace MeadowFontTest
 {
     public class MeadowApp : App<F7Micro, MeadowApp>
     {
         St7789 display;
-        GraphicsLibraryEx graphics;
+        MicroGraphicsEx graphics;
         const int displayWidth = 240;
         const int displayHeight = 240;
 
@@ -124,7 +123,7 @@ namespace MeadowFontTest
             Showfont(new GFXFont_TomThumb(), Color.GreenYellow);
         }
 
-        void Showfont(FontBase font, Color c)
+        void Showfont(IFont font, Color c)
         {
             graphics.Clear();
 
@@ -158,7 +157,7 @@ namespace MeadowFontTest
         {
             Console.WriteLine("Initializing...");
 
-            var config = new SpiClockConfiguration(48000, SpiClockConfiguration.Mode.Mode3);
+            var config = new SpiClockConfiguration(St7789.DefaultSpiBusSpeed, SpiClockConfiguration.Mode.Mode3);
             var spiBus = Device.CreateSpiBus(Device.Pins.SCK, Device.Pins.MOSI, Device.Pins.MISO, config);
 
             display = new St7789(
@@ -172,7 +171,7 @@ namespace MeadowFontTest
                 IgnoreOutOfBoundsPixels = true
             };
 
-            graphics = new GraphicsLibraryEx(display)
+            graphics = new MicroGraphicsEx(display)
             {
                 Rotation = RotationType._270Degrees,
                 Stroke = 1

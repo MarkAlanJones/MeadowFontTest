@@ -8,15 +8,15 @@ namespace Meadow.Foundation.Graphics
     // copyright of the bitmap is unknown
     // this implementation is copyright Mark Jones 2020 - licenced under MIT
     // this font uses Unicode mapping for the extended symbols - see comments for sites that helped
-    class Petscii8x8 : FontBase
+    class Petscii8x8 : IFont
     {
         private const int WIDTH = 8;
         private const int HEIGHT = 8;
 
-        public override int Width { get { return WIDTH; } }
-        public override int Height { get { return HEIGHT; } }
+        public int Width { get { return WIDTH; } }
+        public int Height { get { return HEIGHT; } }
 
-        public override byte[] this[char character]
+        public byte[] this[char character]
         {
             get
             {

@@ -42,12 +42,12 @@ namespace Meadow.Foundation.Graphics
         }
     }
 
-    public abstract class GFXFontBase : FontBase
+    public abstract class GFXFontBase : IFont
     {
 
         protected GFXfont gfxfont;
 
-        public override byte[] this[char character]
+        public byte[] this[char character]
         {
             get
             {
@@ -82,9 +82,9 @@ namespace Meadow.Foundation.Graphics
                 return gfxfont.glyph[0];
         }
 
-        public override int Width => gfxfont.glyph.Max(x => x.xAdvance);
+        public int Width => gfxfont.glyph.Max(x => x.xAdvance);
 
-        public override int Height => gfxfont.yAdvance - 1;
+        public int Height => gfxfont.yAdvance - 1;
 
         public byte yAdvance => gfxfont.yAdvance;
 

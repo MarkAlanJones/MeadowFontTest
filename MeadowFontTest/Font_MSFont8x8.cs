@@ -8,13 +8,13 @@ namespace Meadow.Foundation.Graphics
 {
     // This was converted from C++ code from .NetMF which is open source
     // https://github.com/NETMF/netmf-interpreter/tree/dev/DeviceCode/Drivers/Display/TextFonts
-    public class MSFont8x8 : FontBase
+    public class MSFont8x8 : IFont
     {
         private const int WIDTH = 8;
         private const int HEIGHT = 8;
 
-        public override int Width { get { return WIDTH; } }
-        public override int Height { get { return HEIGHT; } }
+        public int Width { get { return WIDTH; } }
+        public int Height { get { return HEIGHT; } }
 
         private readonly byte[] font_8x8 = {
 /*   0 ' ' */
@@ -1738,7 +1738,7 @@ namespace Meadow.Foundation.Graphics
     /* 00000000 */   0,
 };
 
-        public override byte[] this[char character]
+        public byte[] this[char character]
         {
             get
             {

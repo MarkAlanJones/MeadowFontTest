@@ -6,11 +6,11 @@ namespace Meadow.Foundation.MyExtensions
 {
 
     // Extend the GraphicsLibrary 
-    public class GraphicsLibraryEx : GraphicsLibrary
+    public class MicroGraphicsEx : MicroGraphics
     {
-        DisplayBase display;
+        IGraphicsDisplay display;
 
-        public GraphicsLibraryEx(DisplayBase display) : base(display)
+        public MicroGraphicsEx(IGraphicsDisplay display) : base(display)
         {
             this.display = display;
         }
