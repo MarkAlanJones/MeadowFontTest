@@ -11,7 +11,7 @@ using System.Threading;
 
 namespace MeadowFontTest
 {
-    public class MeadowApp : App<F7Micro, MeadowApp>
+    public class MeadowApp : App<F7FeatherV1, MeadowApp>
     {
         St7789 display;
         MicroGraphicsEx graphics;
