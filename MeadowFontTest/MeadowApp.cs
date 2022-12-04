@@ -1,17 +1,18 @@
 ﻿using Meadow;
 using Meadow.Devices;
 using Meadow.Foundation;
-using Meadow.Foundation.Displays.TftSpi;
+using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.MyExtensions;
 using Meadow.Hardware;
 using System;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace MeadowFontTest
 {
-    public class MeadowApp : App<F7FeatherV1, MeadowApp>
+    public class MeadowApp : App<F7FeatherV1>
     {
         St7789 display;
         MicroGraphicsEx graphics;
@@ -20,14 +21,14 @@ namespace MeadowFontTest
 
         long allocated;
 
-        public MeadowApp()
+        public override Task Run()
         {
-            Initialize();
-
-            while (true)
+            while (graphics != null)
             {
                 Showfont(new Font12x20(), Color.LawnGreen);
-                Showfont(new Consolas12x20(), Color.CornflowerBlue);
+                Showfont(new Font8x16(), Color.LightSalmon); // new rc1
+                // consolas has a type initializer fault that is fatal in rc1
+                //Showfont(new Consolas12x20(), Color.CornflowerBlue);
                 Showfont(new IBMPlexMono12x20(), Color.DeepSkyBlue);
                 Showfont(new SometypeMono12x20(), Color.DeepPink);
                 Showfont(new BPtypewrite12x20(), Color.DarkGreen);
@@ -44,6 +45,7 @@ namespace MeadowFontTest
 
                 GFXFonts();
             }
+            return base.Run();
         }
 
         void GFXFonts()
@@ -153,7 +155,7 @@ namespace MeadowFontTest
             Thread.Sleep(1000);
         }
 
-        void Initialize()
+        public override Task Initialize()
         {
             Console.WriteLine("Initializing...");
 
@@ -166,10 +168,7 @@ namespace MeadowFontTest
                 chipSelectPin: null,
                 dcPin: Device.Pins.D01,
                 resetPin: Device.Pins.D00,
-                width: displayWidth, height: displayHeight)
-            {
-                IgnoreOutOfBoundsPixels = true
-            };
+                width: displayWidth, height: displayHeight);
 
             graphics = new MicroGraphicsEx(display)
             {
@@ -180,6 +179,7 @@ namespace MeadowFontTest
             allocated = GC.GetAllocatedBytesForCurrentThread();
 
             graphics.Clear();
+            return base.Initialize();
         }
 
         void CharacterTest(Color c)
@@ -230,6 +230,7 @@ namespace MeadowFontTest
             graphics.DrawText(0, yPos, "Font_6x8: ABCDEFGHIJKLMNOPabcdefghi123@#$%", Color.Aquamarine);
             yPos += 10;
 
+            // 8
             graphics.CurrentFont = new Font8x8();
             graphics.DrawText(0, yPos, "Font_8x8: ABCDEFabcdefg123@#$%", Color.Orange);
             yPos += 10;
@@ -238,6 +239,11 @@ namespace MeadowFontTest
             graphics.DrawText(0, yPos, "Font_8x12: ABCDEFabcde123@#$%", Color.Yellow);
             yPos += 14;
 
+            graphics.CurrentFont = new Font8x16(); // new rc1
+            graphics.DrawText(0, yPos, "Font_8x16: ABCDEFabcde123@#$%", Color.LightSalmon);
+            yPos += 18;
+
+            // 12
             graphics.CurrentFont = new Font12x16();
             graphics.DrawText(0, yPos, "Font_12x16: ABCdefg123@#$", Color.LawnGreen);
             yPos += 18;
@@ -246,9 +252,11 @@ namespace MeadowFontTest
             graphics.DrawText(0, yPos, "Font_12x20: ABCdef123@#$", Color.Cyan);
             yPos += 22;
 
-            graphics.CurrentFont = new Consolas12x20();
-            graphics.DrawText(0, yPos, "Consolas12x20: 0Og123@#$", Color.BlueViolet);
-            yPos += 22;
+            // custom
+            // consolas has a type initializer fault that is fatal in rc1
+            //graphics.CurrentFont = new Consolas12x20();
+            //graphics.DrawText(0, yPos, "Consolas12x20: 0Og123@#$", Color.BlueViolet);
+            //yPos += 22;
 
             graphics.CurrentFont = new IBMPlexMono12x20();
             graphics.DrawText(0, yPos, "IBMPlexMono12x20: 0Og123@#$", Color.DarkGoldenrod);
