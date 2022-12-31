@@ -360,7 +360,7 @@ namespace MeadowFontTest
             Console.WriteLine();
         }
 
-        // font returns space for missing chacters 
+        // font returns space for missing characters 
         // false for all 0 - true when a non zero byte is found
         bool CharExists(int i)
         {
