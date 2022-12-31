@@ -27,7 +27,7 @@ namespace MeadowFontTest
             {
                 Showfont(new Font12x20(), Color.LawnGreen);
                 Showfont(new Font8x16(), Color.LightSalmon); // new rc1
-                // consolas has a type initializer fault that is fatal in rc1
+                // consolas has a type initializer fault that is fatal in rc1 & rc2
                 //Showfont(new Consolas12x20(), Color.CornflowerBlue);
                 Showfont(new IBMPlexMono12x20(), Color.DeepSkyBlue);
                 Showfont(new SometypeMono12x20(), Color.DeepPink);
