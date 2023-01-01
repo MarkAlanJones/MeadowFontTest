@@ -1,7 +1,7 @@
 # Meadow Font Test
 Add new fonts to Meadow MicroGraphics Library
 
-Here we demonstrate adding new fonts to the Meadow Graphics Library
+Here we demonstrate adding new fonts to the Meadow MicroGraphics Library
 
 1. Consolas 
 2. IBM Plex Mono
