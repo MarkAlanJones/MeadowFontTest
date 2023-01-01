@@ -12,7 +12,7 @@ Here we demonstrate adding new fonts to the Meadow Graphics Library
 7. Microsoft .NetMF fixed fonts
 8. Petscii - character ROM dump
 
-The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/develop/Source/Meadow.Foundation.Libraries_and_Frameworks/Displays.GraphicsLibrary">Meadow.Foundation Graphics Library</a>
+The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/main/Source/Meadow.Foundation.Libraries_and_Frameworks/Graphics.MicroGraphics">Meadow.Foundation MicroGraphics Library</a>
 supports drawing fonts in a few fixed width sizes.  
 
 4x6| 4x8| 6x8| 8x8| 8x12| 12x16| 12x20|
