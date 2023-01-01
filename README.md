@@ -23,7 +23,7 @@ The smaller sizes may be appropriate for hand drawn fonts, but if we are convert
 These initial attempts target fixed width or Monospaced fonts.
 
 ## Consolas
-<a href="https://docs.microsoft.com/en-us/typography/font-list/consolas">Consolas</a> is a Microsoft font, used in visual studio, it may not be appropriate for open source use.
+<a href="https://docs.microsoft.com/en-us/typography/font-list/consolas">Consolas</a> is a Microsoft font, used in visual studio, it may not be appropriate for open source use. [Although apparently Fonts are not Copyright protected] (http://wiki.squeak.org/squeak/1849)
 
 so I found 3 open source fonts, which ended up with a much smaller character set
 
