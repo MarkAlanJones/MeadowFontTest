@@ -1,4 +1,4 @@
-# MeadowFontTest
+# Meadow Font Test
 Add new fonts to Meadow Graphics Library
 
 Here we demonstrate adding new fonts to the Meadow Graphics Library
