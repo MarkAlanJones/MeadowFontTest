@@ -6,9 +6,13 @@ using Meadow.Foundation.Graphics;
 using Meadow.Foundation.MyExtensions;
 using Meadow.Hardware;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using YaffReader;
 
 namespace MeadowFontTest
 {
@@ -18,6 +22,7 @@ namespace MeadowFontTest
         MicroGraphicsEx graphics;
         const int displayWidth = 240;
         const int displayHeight = 240;
+        private readonly Random rand = new Random();
 
         long allocated;
 
@@ -44,6 +49,9 @@ namespace MeadowFontTest
                 Thread.Sleep(5000);
 
                 GFXFonts();
+
+                // Fixed width fonts 12px or thinner
+                YaffFont1();
             }
             return base.Run();
         }
@@ -125,7 +133,7 @@ namespace MeadowFontTest
             Showfont(new GFXFont_TomThumb(), Color.GreenYellow);
         }
 
-        void Showfont(IFont font, Color c)
+        void Showfont(IFont font, Color c, ScaleFactor x = ScaleFactor.X1)
         {
             graphics.Clear();
 
@@ -144,6 +152,18 @@ namespace MeadowFontTest
             {
                 graphics.CurrentFont = font;
                 UnicodeTest(c);
+            }
+            else if (font is YaffFixedFont)
+            {
+                // Write the name of the Font at the Top
+                graphics.CurrentFont = new Font6x8();
+                graphics.PenColor = Color.LawnGreen;
+                graphics.DrawText(0, 0, ((YaffFixedFont)font).Name);
+                Console.WriteLine(((YaffFixedFont)font).Name);
+
+                // Display the Font
+                graphics.CurrentFont = font;
+                YaffCharacterTest(c, x);
             }
             else
             {
@@ -379,5 +399,142 @@ namespace MeadowFontTest
             allocated = GC.GetAllocatedBytesForCurrentThread();
         }
 
+        #region New For Yaff
+
+        // Show all Fixed Fonts in directory (38)
+        private void YaffFont1()
+        {
+            foreach (var x in Directory.GetFiles(MeadowOS.FileSystem.UserFileSystemRoot, "*.yaff"))
+            {
+                try
+                {
+                    var yaff = new YaYaffReader(x);
+                    var yf = yaff.Load_Yaff();
+
+                    if (yf.Type == YaffFontType.Fixed)
+                    {
+                        graphics.CurrentFont = yf;
+
+                        Showfont(yf, Color.LightSteelBlue, ScaleFactor.X1);
+                        Thread.Sleep(500);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex.Message + " for " + x);
+                }
+            }
+
+            CultofAtari();
+        }
+
+        private void YaffCharacterTest(Color c, ScaleFactor x = ScaleFactor.X1)
+        {
+            string msg = string.Empty;
+
+            int yPos = 12;
+            int count = 0;
+
+            foreach (var ch in ((IYaffFont)(graphics.CurrentFont)).CharMap)
+            {
+                if (count >= ((displayWidth - 24) / (graphics.CurrentFont.Width * (int)x)))
+                {
+                    graphics.DrawText(12, yPos, msg, c, x);
+                    Debug.WriteLine(msg);
+                    yPos += (graphics.CurrentFont.Height * (int)x) + 6;
+                    if (graphics.CurrentFont.Height > 12)
+                        yPos -= 3;
+                    else if (graphics.CurrentFont.Height > 8)
+                        yPos -= 2;
+
+                    count = 0;
+                    msg = string.Empty;
+                }
+
+                msg += ch;
+                count++;
+            }
+            // a missing "default" char at end - blank in some fonts
+            msg += (char)0xFFF;
+
+            graphics.DrawText(12, yPos, msg, c, x);
+            Debug.WriteLine(msg);
+
+            graphics.Show();
+            Debug.WriteLine("");
+        }
+
+        // Easter Egg Characters from Atari?
+        private void CultofAtari()
+        {
+            var fonts = new List<string>()
+            {
+                "atari-st-6x6.yaff",
+                "atari-st-8x8.yaff",
+                "atari-st-8x16.yaff",
+            };
+
+            string atariLogo = UnicodeToChar("f82a") + UnicodeToChar("f82b");
+            string bobtop = UnicodeToChar("f82c") + UnicodeToChar("f82d");
+            string bobbot = UnicodeToChar("f82e") + UnicodeToChar("f82f");
+
+            var loadedfonts = new List<IYaffFont>();
+            foreach (var f in fonts)
+                loadedfonts.Add(YaffFont.GetFont(f));
+
+            int[] lineoffset = { 2, 0, 0 };
+
+            graphics.Clear();
+            for (var i = 0; i < 50; i++)
+            {
+                ScaleFactor s = ScaleFactor.X1;
+                var sr = rand.Next(4);
+                if (sr == 3)
+                    s = ScaleFactor.X4;
+                if (sr == 2)
+                    s = ScaleFactor.X3;
+                if (sr == 1)
+                    s = ScaleFactor.X2;
+
+                var fontnum = rand.Next(3);
+                graphics.CurrentFont = loadedfonts[fontnum];
+
+                if (rand.Next(2) == 0)
+                {
+                    // bob
+                    var x = rand.Next(displayWidth);
+                    var y = rand.Next(displayHeight);
+                    var c = RandColor();
+
+                    graphics.DrawText(x, y, bobtop, c, s);
+                    var y2 = y + (graphics.CurrentFont.Height - lineoffset[fontnum]) * (int)s;
+                    graphics.DrawText(x, y2, bobbot, c, s);
+                }
+                else
+                {
+                    // logo
+                    graphics.DrawText(rand.Next(displayWidth),
+                                      rand.Next(displayHeight),
+                                      atariLogo, RandColor(), s);
+
+                }
+            }
+            graphics.Show();
+            Thread.Sleep(5000);
+        }
+
+        private static string UnicodeToChar(string hex)
+        {
+            int code = int.Parse(hex, System.Globalization.NumberStyles.HexNumber);
+            string unicodeString = char.ConvertFromUtf32(code);
+            return unicodeString;
+        }
+
+        private Color RandColor()
+        {
+            return Color.FromRgb(rand.Next(255), rand.Next(255), rand.Next(255));
+        }
+
+        #endregion
     }
 }

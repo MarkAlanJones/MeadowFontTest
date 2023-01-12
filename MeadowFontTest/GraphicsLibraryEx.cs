@@ -8,7 +8,7 @@ namespace Meadow.Foundation.MyExtensions
     // Extend the GraphicsLibrary 
     public class MicroGraphicsEx : MicroGraphics
     {
-        IGraphicsDisplay display;
+        new IGraphicsDisplay display;
 
         public MicroGraphicsEx(IGraphicsDisplay display) : base(display)
         {
