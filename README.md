@@ -11,6 +11,7 @@ Here we demonstrate adding new fonts to the Meadow MicroGraphics Library
 6. 52 Adafruit GFX fonts
 7. Microsoft .NetMF fixed fonts
 8. Petscii - character ROM dump
+9. Release the Hoard! - 37 Fixed width Yaff fonts from the ![Bitmap Hoard](https://github.com/robhagemans/hoard-of-bitfonts) 
 
 The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/main/Source/Meadow.Foundation.Libraries_and_Frameworks/Graphics.MicroGraphics">Meadow.Foundation MicroGraphics Library</a>
 supports drawing fonts in a few (now 8) fixed width sizes.  
@@ -161,4 +162,31 @@ and don't forget, the Meadow Graphics Library can also display fonts at 2X or 3X
 here is petscii at 2X (16x16)
 
 ![Petscii8x82X](ScreenShots/Petscii8x82X.png)
+
+# The Bitmap Hoard 
+## Part 1 - Fixed width 12px or less
+
+[Rob Hagemans](https://github.com/robhagemans/hoard-of-bitfonts) has not only collected many historical bitmap fonts, he has also created a new storage format ([Yaff](https://github.com/robhagemans/monobit/blob/master/YAFF.md)) that is more human readable than most formats, and not too bad to parse.
+
+These Fonts, are read by the YaffReader, which returns an IYaffFont which is an IFont that the Micrographics DrawText function can use.
+This means you can include the YaYaffReader.cs in your meadow application, along with any number of these Yaff files, and load and display the font at runtime.
+This consumes more memory than compiling the fonts, but being able to treat the fonts as files, instead of code is more convienient.
+
+### Amiga
+
+### [Hellschreiber](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/hellschreiber)
+
+| Feld-Hell Typenbildschreiber 7x14  | Hellschreiber T-Typ 72 GL 7x14  | Hell-80  7x9 | GTL Telewriter 7x8   | 
+|:----------:|:-------------:|:---------:|:--------------:|
+|![Feld-Hell Typenbildschreiber ](ScreenShots/feld-hell-tbs24a-7x14.yaff.png) |![Hellschreiber T-Typ 72 GL ](ScreenShots/t-typ72-gl-7x14.yaff.png) |![Hell 80](ScreenShots/hell80-7x9.yaff.png) |![GTL Telewriter ](ScreenShots/gtl-telewriter-7x8.yaff.png) |
+| Abtastfernschreiber  8x14     ||||
+|![Abtastfernschreiber](ScreenShots/abtastfernschreiber-8x14.yaff.png)   ||||
+
+### DEC VT-xxx Terminals
+
+| VT-52 | VT-100 | VT-220 |
+|:----------:|:-------------:|:---------:|
+|![VT-52](ScreenShots/vt52.yaff.png) | ![VT-100](ScreenShots/vt100.yaff.png) |  ![VT-220](ScreenShots/vt220.yaff.png) |
+| funky g and lightning tilda | Desenders and line drawing characters  | Accented characters, backward ?  | 
+
 
