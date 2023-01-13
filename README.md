@@ -11,7 +11,7 @@ Here we demonstrate adding new fonts to the Meadow MicroGraphics Library
 6. 52 Adafruit GFX fonts
 7. Microsoft .NetMF fixed fonts
 8. Petscii - character ROM dump
-9. Release the Hoard! - 37 Fixed width Yaff fonts from the ![Bitmap Hoard](https://github.com/robhagemans/hoard-of-bitfonts) 
+9. Release the Hoard! - 37 Fixed width Yaff fonts from the [Bitmap Hoard](https://github.com/robhagemans/hoard-of-bitfonts) 
 
 The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/main/Source/Meadow.Foundation.Libraries_and_Frameworks/Graphics.MicroGraphics">Meadow.Foundation MicroGraphics Library</a>
 supports drawing fonts in a few (now 8) fixed width sizes.  
@@ -200,6 +200,14 @@ Gacha and Monaco are two of the few fixed Mac Fonts. There are a few slightly sm
 |:----------:|:-------------:|:---------:|:--------------:|
 |![Classic](ScreenShots/atascii.yaff.png) |![ST6x6](ScreenShots/atari-st-6x6.yaff.png) |![ST8x8](ScreenShots/atari-st-8x8.yaff.png) |![ST8x16](ScreenShots/atari-st-8x16.yaff.png) |
 ![CoA](ScreenShots/CultofAtari.png)
+
+### [Gem](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/gem)
+
+There are several other sizes for these fonts in the hoard
+
+| DrDos 8x19 | Gem 3.1 6x6 | Viewmax 8x8|
+|:----------:|:-------------:|:---------:|
+| ![drdos 8x19](ScreenShots/drdos-6v-sbcs-8x19.yaff.png) | ![Gem 3.1 6x6](ScreenShots/gem-3.1-6x6.yaff.png) | ![Viewmax](ScreenShots/viewmax-2-8x8.yaff.png)|
 
 ### [Hellschreiber](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/hellschreiber)
 
