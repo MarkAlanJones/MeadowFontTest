@@ -174,6 +174,25 @@ This consumes more memory than compiling the fonts, but being able to treat the 
 
 ### Amiga
 
+| Topaz | | | |
+|:----------:|:-------------:|:---------:|:--------------:|
+| ![amiga-ks30-topaz-08](ScreenShots/amiga-ks30-topaz-08.yaff.png) | ![amiga-ks30-topaz-09](ScreenShots/amiga-ks30-topaz-09.yaff.png) |  ![amiga-wb31-topaz-11](ScreenShots/amiga-wb31-topaz-11.yaff.png) |  |
+| Xen | | | |
+| ![amiga-magicwb-xen-08](ScreenShots/amiga-magicwb-xen-08.yaff.png) |  ![amiga-magicwb-xen-09](ScreenShots/amiga-magicwb-xen-09.yaff.png) |  ![amiga-magicwb-xen-11](ScreenShots/amiga-magicwb-xen-11.yaff.png) | |
+| Nudel | | | |
+| ![amiga-nudelfonts-polarsmall-6](ScreenShots/amiga-nudelfonts-polarsmall-6.yaff.png) | ![amiga-nudelfonts-eagleplayer-8](ScreenShots/amiga-nudelfonts-eagleplayer-8.yaff.png) | ![amiga-nudelfonts-pot-ibm-8](ScreenShots/amiga-nudelfonts-pot-ibm-8.yaff.png) |  ![amiga-nudelfonts-pot-noodle-8](ScreenShots/amiga-nudelfonts-pot-noodle-8.yaff.png) |
+| XCourier | | | |
+| ![amiga-magicwb-xcourier-11](ScreenShots/amiga-magicwb-xcourier-11.yaff.png) | ![amiga-magicwb-xcourier-13](ScreenShots/amiga-magicwb-xcourier-13.yaff.png) |  ![amiga-magicwb-xcourier-15](ScreenShots/amiga-magicwb-xcourier-15.yaff.png) | |
+| ![amiga-wb31-courier-11](ScreenShots/amiga-wb31-courier-11.yaff.png) | ![amiga-wb31-courier-13](ScreenShots/amiga-wb31-courier-13.yaff.png) | ![amiga-wb31-courier-15](ScreenShots/amiga-wb31-courier-15.yaff.png) |  ![amiga-wb31-courier-18](ScreenShots/amiga-wb31-courier-18.yaff.png) |
+
+
+### Atari 
+
+| Classic | ST 6x6 | ST 8x8 | ST 8x16 |
+|:----------:|:-------------:|:---------:|:--------------:|
+|![Classic](ScreenShots/atascii.yaff.png) |![ST6x6](ScreenShots/atari-st-6x6.yaff.png) |![ST8x8](ScreenShots/atari-st-8x8.yaff.png) |![ST8x16](ScreenShots/atari-st-8x16.yaff.png) |
+![CoA](ScreenShots/CultofAtari.png)
+
 ### [Hellschreiber](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/hellschreiber)
 
 | Feld-Hell Typenbildschreiber 7x14  | Hellschreiber T-Typ 72 GL 7x14  | Hell-80  7x9 | GTL Telewriter 7x8   | 
