@@ -11,6 +11,7 @@ Here we demonstrate adding new fonts to the Meadow MicroGraphics Library
 6. 52 Adafruit GFX fonts
 7. Microsoft .NetMF fixed fonts
 8. Petscii - character ROM dump
+9. Release the Hoard! - 37 Fixed width Yaff fonts from the [Bitmap Hoard](https://github.com/robhagemans/hoard-of-bitfonts) 
 
 The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/main/Source/Meadow.Foundation.Libraries_and_Frameworks/Graphics.MicroGraphics">Meadow.Foundation MicroGraphics Library</a>
 supports drawing fonts in a few (now 8) fixed width sizes.  
@@ -23,9 +24,11 @@ The smaller sizes may be appropriate for hand drawn fonts, but if we are convert
 These initial attempts target fixed width or Monospaced fonts.
 
 ## Consolas
-<a href="https://docs.microsoft.com/en-us/typography/font-list/consolas">Consolas</a> is a Microsoft font, used in visual studio, it may not be appropriate for open source use. <a href="http://wiki.squeak.org/squeak/1849">Although apparently Fonts are not Copyright protected</a>
+<a href="https://docs.microsoft.com/en-us/typography/font-list/consolas">Consolas</a> is a Microsoft font, used in visual studio, it may not be appropriate for open source use. 
 
-so I found 3 open source fonts, which ended up with a much smaller character set
+<a href="http://wiki.squeak.org/squeak/1849">Although apparently Fonts are not Copyright protected</a>
+
+So I found 3 open source fonts, which ended up with a much smaller character set
 
 ![Consolas Font](ScreenShots/Consolas.png)
 
@@ -159,4 +162,83 @@ and don't forget, the Meadow Graphics Library can also display fonts at 2X or 3X
 here is petscii at 2X (16x16)
 
 ![Petscii8x82X](ScreenShots/Petscii8x82X.png)
+
+# The Bitmap Hoard 
+## Part 1 - Fixed width 12px or less
+
+[Rob Hagemans](https://github.com/robhagemans/hoard-of-bitfonts) has not only collected many historical bitmap fonts, he has also created a new storage format ([Yaff](https://github.com/robhagemans/monobit/blob/master/YAFF.md)) that is more human readable than most formats, and not too bad to parse.
+
+These Fonts, are read by the YaffReader, which returns an IYaffFont which is an IFont that the Micrographics DrawText function can use.
+This means you can include the YaYaffReader.cs in your meadow application, along with any number of these Yaff files, and load and display the font at runtime.
+This consumes more memory than compiling the fonts, but being able to treat the fonts as files, instead of code is more convienient.
+
+### Amiga
+
+| Topaz | | | |
+|:----------:|:-------------:|:---------:|:--------------:|
+| ![amiga-ks30-topaz-08](ScreenShots/amiga-ks30-topaz-08.yaff.png) | ![amiga-ks30-topaz-09](ScreenShots/amiga-ks30-topaz-09.yaff.png) |  ![amiga-wb31-topaz-11](ScreenShots/amiga-wb31-topaz-11.yaff.png) |  |
+| Xen | | | |
+| ![amiga-magicwb-xen-08](ScreenShots/amiga-magicwb-xen-08.yaff.png) |  ![amiga-magicwb-xen-09](ScreenShots/amiga-magicwb-xen-09.yaff.png) |  ![amiga-magicwb-xen-11](ScreenShots/amiga-magicwb-xen-11.yaff.png) | |
+| Nudel | | | |
+| ![amiga-nudelfonts-polarsmall-6](ScreenShots/amiga-nudelfonts-polarsmall-6.yaff.png) | ![amiga-nudelfonts-eagleplayer-8](ScreenShots/amiga-nudelfonts-eagleplayer-8.yaff.png) | ![amiga-nudelfonts-pot-ibm-8](ScreenShots/amiga-nudelfonts-pot-ibm-8.yaff.png) |  ![amiga-nudelfonts-pot-noodle-8](ScreenShots/amiga-nudelfonts-pot-noodle-8.yaff.png) |
+| MagicWB XCourier | | | |
+| ![amiga-magicwb-xcourier-11](ScreenShots/amiga-magicwb-xcourier-11.yaff.png) | ![amiga-magicwb-xcourier-13](ScreenShots/amiga-magicwb-xcourier-13.yaff.png) |  ![amiga-magicwb-xcourier-15](ScreenShots/amiga-magicwb-xcourier-15.yaff.png) | |
+| Courier |
+| ![amiga-wb31-courier-11](ScreenShots/amiga-wb31-courier-11.yaff.png) | ![amiga-wb31-courier-13](ScreenShots/amiga-wb31-courier-13.yaff.png) | ![amiga-wb31-courier-15](ScreenShots/amiga-wb31-courier-15.yaff.png) |  ![amiga-wb31-courier-18](ScreenShots/amiga-wb31-courier-18.yaff.png) |
+
+### Apple [Mac](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/apple-mac)
+
+Gacha and Monaco are two of the few fixed Mac Fonts. There are a few slightly smaller versions of both.
+
+| Gacha 7x13 |  Monaco 7x16 |
+|:----------:|:-------------:|
+|![Gacha_7x13](ScreenShots/Gacha_7x13.yaff.png) | ![Monaco_7x16](ScreenShots/Monaco_7x16.yaff.png) |
+
+### Atari 
+
+| Classic | ST 6x6 | ST 8x8 | ST 8x16 |
+|:----------:|:-------------:|:---------:|:--------------:|
+|![Classic](ScreenShots/atascii.yaff.png) |![ST6x6](ScreenShots/atari-st-6x6.yaff.png) |![ST8x8](ScreenShots/atari-st-8x8.yaff.png) |![ST8x16](ScreenShots/atari-st-8x16.yaff.png) |
+![CoA](ScreenShots/CultofAtari.png)
+
+### [Gem](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/gem)
+
+There are several other sizes for these fonts in the hoard
+
+| DrDos 8x19 | Gem 3.1 6x6 | Viewmax 8x8|
+|:----------:|:-------------:|:---------:|
+| ![drdos 8x19](ScreenShots/drdos-6v-sbcs-8x19.yaff.png) | ![Gem 3.1 6x6](ScreenShots/gem-3.1-6x6.yaff.png) | ![Viewmax](ScreenShots/viewmax-2-8x8.yaff.png)|
+
+### [Hellschreiber](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/hellschreiber)
+
+| Feld-Hell Typenbildschreiber 7x14  | Hellschreiber T-Typ 72 GL 7x14  | Hell-80  7x9 | GTL Telewriter 7x8   | 
+|:----------:|:-------------:|:---------:|:--------------:|
+|![Feld-Hell Typenbildschreiber ](ScreenShots/feld-hell-tbs24a-7x14.yaff.png) |![Hellschreiber T-Typ 72 GL ](ScreenShots/t-typ72-gl-7x14.yaff.png) |![Hell 80](ScreenShots/hell80-7x9.yaff.png) |![GTL Telewriter ](ScreenShots/gtl-telewriter-7x8.yaff.png) |
+| Abtastfernschreiber  8x14     ||||
+|![Abtastfernschreiber](ScreenShots/abtastfernschreiber-8x14.yaff.png)   ||||
+
+### DEC VT-xxx Terminals
+
+| VT-52 | VT-100 | VT-220 |
+|:----------:|:-------------:|:---------:|
+|![VT-52](ScreenShots/vt52.yaff.png) | ![VT-100](ScreenShots/vt100.yaff.png) |  ![VT-220](ScreenShots/vt220.yaff.png) |
+| funky g and lightning tilda | Desenders and line drawing characters  | Accented characters, backward ?  | 
+
+### [Olivetti](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/kyotronic)
+
+There are other regional versions with slightly different characters as well
+
+![olivetti-m10-us.yaff.png](ScreenShots/olivetti-m10-us.yaff.png)
+
+### [Windows 3.1](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/windows/windows-3.1) Terminal
+
+Like the Mac fonts, most are proportional. There are also older versions from Windows 1.0-3.0
+
+| Terminal 140 | Terminal 8514 |
+|:----------:|:-------------:|
+|![Terminal140](ScreenShots/Terminal_140.yaff.png) | ![Terminal8154](ScreenShots/Terminal_8514.yaff.png) | 
+
+
+
+
 
