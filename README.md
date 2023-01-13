@@ -188,9 +188,11 @@ This consumes more memory than compiling the fonts, but being able to treat the 
 
 ### Apple [Mac](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/apple-mac)
 
-Gacha 7x13 is one of the few fixed Mac Fonts. There are a few slightly smaller versions.
+Gacha and Monaco are two of the few fixed Mac Fonts. There are a few slightly smaller versions of both.
 
-![Gacha_7x13](ScreenShots/Gacha_7x13.yaff.png)
+| Gacha 7x13 |  Monaco 7x16 |
+|:----------:|:-------------:|
+|![Gacha_7x13](ScreenShots/Gacha_7x13.yaff.png) | ![Monaco_7x16](ScreenShots/Monaco_7x16.yaff.png) |
 
 ### Atari 
 
