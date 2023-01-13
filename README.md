@@ -181,10 +181,10 @@ This consumes more memory than compiling the fonts, but being able to treat the 
 | ![amiga-magicwb-xen-08](ScreenShots/amiga-magicwb-xen-08.yaff.png) |  ![amiga-magicwb-xen-09](ScreenShots/amiga-magicwb-xen-09.yaff.png) |  ![amiga-magicwb-xen-11](ScreenShots/amiga-magicwb-xen-11.yaff.png) | |
 | Nudel | | | |
 | ![amiga-nudelfonts-polarsmall-6](ScreenShots/amiga-nudelfonts-polarsmall-6.yaff.png) | ![amiga-nudelfonts-eagleplayer-8](ScreenShots/amiga-nudelfonts-eagleplayer-8.yaff.png) | ![amiga-nudelfonts-pot-ibm-8](ScreenShots/amiga-nudelfonts-pot-ibm-8.yaff.png) |  ![amiga-nudelfonts-pot-noodle-8](ScreenShots/amiga-nudelfonts-pot-noodle-8.yaff.png) |
-| XCourier | | | |
+| MagicWB XCourier | | | |
 | ![amiga-magicwb-xcourier-11](ScreenShots/amiga-magicwb-xcourier-11.yaff.png) | ![amiga-magicwb-xcourier-13](ScreenShots/amiga-magicwb-xcourier-13.yaff.png) |  ![amiga-magicwb-xcourier-15](ScreenShots/amiga-magicwb-xcourier-15.yaff.png) | |
+| Courier |
 | ![amiga-wb31-courier-11](ScreenShots/amiga-wb31-courier-11.yaff.png) | ![amiga-wb31-courier-13](ScreenShots/amiga-wb31-courier-13.yaff.png) | ![amiga-wb31-courier-15](ScreenShots/amiga-wb31-courier-15.yaff.png) |  ![amiga-wb31-courier-18](ScreenShots/amiga-wb31-courier-18.yaff.png) |
-
 
 ### Atari 
 
@@ -207,5 +207,11 @@ This consumes more memory than compiling the fonts, but being able to treat the 
 |:----------:|:-------------:|:---------:|
 |![VT-52](ScreenShots/vt52.yaff.png) | ![VT-100](ScreenShots/vt100.yaff.png) |  ![VT-220](ScreenShots/vt220.yaff.png) |
 | funky g and lightning tilda | Desenders and line drawing characters  | Accented characters, backward ?  | 
+
+### [Olivetti](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/kyotronic)
+
+There are other regional versions with slightly different characters as well
+
+![olivetti-m10-us.yaff.png](ScreenShots/olivetti-m10-us.yaff.png)
 
 
