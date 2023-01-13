@@ -230,4 +230,15 @@ There are other regional versions with slightly different characters as well
 
 ![olivetti-m10-us.yaff.png](ScreenShots/olivetti-m10-us.yaff.png)
 
+### [Windows 3.1](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/windows/windows-3.1) Terminal
+
+Like the Mac fonts, most are proportional. There are also older versions from Windows 1.0-3.0
+
+| Terminal 140 | Terminal 8514 |
+|:----------:|:-------------:|
+|![Terminal140](ScreenShots/Terminal_140.yaff.png) | ![Terminal8154](ScreenShots/Terminal_8514.yaff.png) | 
+
+
+
+
 
