@@ -1,10 +1,10 @@
 ﻿using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using System;
+using YaffReader;
 
 namespace Meadow.Foundation.MyExtensions
 {
-
     // Extend the GraphicsLibrary 
     public class MicroGraphicsEx : MicroGraphics
     {
@@ -82,6 +82,66 @@ namespace Meadow.Foundation.MyExtensions
                 }
             }
 
+        }
+
+        /// <summary>
+        /// Set the CurrentFont to a YaffFont - proportional or fixed 
+        /// DrawYaffText uses x,y of the TOP LEFT corner, same as DrawText
+        /// If the WrapText property is set, the Text will wrap by advancing CursorY and returning to the original CursorX
+        /// </summary>
+        /// <param name="xPos">Distance from left edge of screen to start</param>
+        /// <param name="yPos">Distance from top edge of screen to start</param>
+        /// <param name="text">Text to render</param>
+        /// <param name="color">Color to render text in </param>
+        /// <param name="scaleFactor">Size of text</param>
+        /// <exception cref="Exception">set a Yaff Font</exception>
+        public void DrawYaffText(int xPos, int yPos, string text,
+                                 Color color, ScaleFactor scaleFactor = ScaleFactor.X1)
+        {
+            if (CurrentFont == null)
+            {
+                throw new Exception("CurrentFont must be set before calling DrawYaffText.");
+            }
+            else if (!(CurrentFont is IYaffFont))
+            {
+                throw new Exception("CurrentFont must be YaffFont");
+            }
+
+            IYaffFont yaffFont = (IYaffFont)CurrentFont;
+            CursorX = xPos;
+            CursorY = yPos;
+            PenColor = color;  // all the text is the same color
+
+            // each character
+            for (int i = 0; i < text.Length; i++)
+            {
+                var c = yaffFont.GlyphLines(text[i]);
+                (var lb, var rb) = yaffFont.GetBearing(text[i]);
+
+                xPos += lb * (int)scaleFactor; // left bearing
+                foreach (var line in c)
+                {
+                    var j = -(int)scaleFactor;
+                    foreach (var p in line)
+                    {
+                        j += (int)scaleFactor;
+                        if (p.Equals(YaffConst.ink))
+                        {
+                            for (var k = 0; k < (int)scaleFactor; k++)
+                                for (var l = 0; l < (int)scaleFactor; l++)
+                                    DrawPixel(xPos + k, CursorY + j + l);
+                        }
+                    }
+                    xPos += (int)scaleFactor;
+                }
+                xPos += rb * (int)scaleFactor; // right bearing
+
+                if (WrapText && (xPos >= display.Width - (Math.Max(yaffFont.Width, c.Count + lb + rb) * (int)scaleFactor)))
+                {
+                    xPos = CursorX;
+                    CursorY += (c[0].Length + 1) * (int)scaleFactor;
+                }
+            }
         }
 
     }

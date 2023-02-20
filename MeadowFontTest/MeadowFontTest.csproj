@@ -7,6 +7,17 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="abtastfernschreiber-8x14.yaff" />
+    <None Remove="amiga-wb31-courier-24.yaff" />
+    <None Remove="atari-st-16x32.yaff" />
+    <None Remove="boothill.yaff" />
+    <None Remove="Courier_15x25.yaff" />
+    <None Remove="future.yaff" />
+    <None Remove="gothic.yaff" />
+    <None Remove="jetpac.yaff" />
+    <None Remove="LW_Barrows_14x24.yaff" />
+    <None Remove="mercy.yaff" />
+    <None Remove="powerslave.yaff" />
+    <None Remove="vt320.yaff" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="abtastfernschreiber-8x14.yaff">
@@ -60,7 +71,13 @@
     <Content Include="amiga-wb31-courier-18.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="amiga-wb31-courier-24.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="amiga-wb31-topaz-11.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="atari-st-16x32.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="atari-st-6x6.yaff">
@@ -75,10 +92,19 @@
     <Content Include="atascii.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="boothill.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Courier_15x25.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="drdos-6v-sbcs-8x19.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="feld-hell-tbs24a-7x14.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="future.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Gacha_7x13.yaff">
@@ -87,16 +113,31 @@
     <Content Include="gem-3.1-6x6.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="gothic.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="gtl-telewriter-7x8.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="hell80-7x9.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="jetpac.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LW_Barrows_14x24.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="mercy.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Monaco_7x16.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="olivetti-m10-us.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="powerslave.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="t-typ72-gl-7x14.yaff">
@@ -117,15 +158,23 @@
     <Content Include="vt220.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="vt320.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="vt52.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.F7" Version="0.92.6" />
-    <PackageReference Include="Meadow.Foundation" Version="0.92.5" />
+    <PackageReference Include="Meadow.F7" Version="0.94.2" />
+    <PackageReference Include="Meadow.Foundation" Version="0.94.2" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.92.5" />
+    <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.94.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="meadow.config.yaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>

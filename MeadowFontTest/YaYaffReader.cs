@@ -1,9 +1,7 @@
-﻿using Meadow;
-using Meadow.Foundation.Graphics;
+﻿using Meadow.Foundation.Graphics;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -11,6 +9,19 @@ using System.Text;
 
 namespace YaffReader
 {
+    public static class YaffConst
+    {
+        public static char ink = '@';
+        public static char paper = '.';
+        public static char empty = '-';
+        public static string glyphchars = new string(new char[] { ink, paper, empty });
+
+        public static char separator = ':';
+        public static readonly char comment = '#';
+
+        public static char[] whitespace = { ' ', '\t' };
+    }
+
     /// <summary>
     /// https://github.com/robhagemans/monobit/blob/master/YAFF.md - YAFF Font file format
     /// This Format's purpose is to preserve Bitmap fonts in a consistant human readable format
@@ -19,15 +30,6 @@ namespace YaffReader
     public class YaYaffReader
     {
         private string filename { get; set; }
-        private char[] whitespace = { ' ', '\t' };
-
-        private static string ink = "@";
-        private static string paper = ".";
-        private static string empty = "-";
-        private static string glyphchars = ink + paper + empty;
-
-        private static char separator = ':';
-        private static readonly char comment = '#';
 
         // Properties of Font - Comments Props Glyphs
         public string Comment { get; private set; }
@@ -64,8 +66,8 @@ namespace YaffReader
                 string line = lines[linenum];
 
                 // several line types are expected
-                var isblank = line.All(c => whitespace.Contains(c));
-                var iscomment = !isblank && line[0] == comment;
+                var isblank = line.All(c => YaffConst.whitespace.Contains(c));
+                var iscomment = !isblank && line[0] == YaffConst.comment;
                 if (iscomment)
                     commenttext = line[1..];
 
@@ -74,9 +76,9 @@ namespace YaffReader
                     line = "space:";
 
                 // property has a value - label does not
-                var ispropkey = !iscomment && line.Contains(separator);
-                var isglyph = !isblank && line.All(c => glyphchars.Contains(c) || whitespace.Contains(c));
-                var islabel = line.TrimEnd().EndsWith(separator) && (line.Length == 1 || !whitespace.Contains(line[1]));
+                var ispropkey = !iscomment && line.Contains(YaffConst.separator);
+                var isglyph = !isblank && line.All(c => YaffConst.glyphchars.Contains(c) || YaffConst.whitespace.Contains(c));
+                var islabel = line.TrimEnd().EndsWith(YaffConst.separator) && (line.Length == 1 || !YaffConst.whitespace.Contains(line[1]));
 
                 if (islabel)
                 {
@@ -84,7 +86,7 @@ namespace YaffReader
                     // unless it is a multiline prop
 
                     var lookahead = lines[linenum + 1];
-                    if (!lookahead.All(c => glyphchars.Contains(c) || whitespace.Contains(c)) &&
+                    if (!lookahead.All(c => YaffConst.glyphchars.Contains(c) || YaffConst.whitespace.Contains(c)) &&
                         !lookahead.Trim().EndsWith(":"))
                     {
                         islabel = false;
@@ -141,11 +143,11 @@ namespace YaffReader
                     // multiline - indented value
                     if (line.TrimEnd().EndsWith(":"))
                     {
-                        key = line.TrimEnd().TrimEnd(separator).Replace("_", "-").ToLowerInvariant();
+                        key = line.TrimEnd().TrimEnd(YaffConst.separator).Replace("_", "-").ToLowerInvariant();
                         linenum++;
                         line = lines[linenum].TrimEnd();
 
-                        var indent = line.Length - line.TrimStart(whitespace).Length;
+                        var indent = line.Length - line.TrimStart(YaffConst.whitespace).Length;
                         var valbuilder = new StringBuilder();
 
                         do
@@ -161,13 +163,13 @@ namespace YaffReader
                     else
                     {
                         // value is on the line
-                        var s = line.Split(separator);
+                        var s = line.Split(YaffConst.separator);
                         key = s[0].Replace("_", "-").ToLowerInvariant(); // keys are not case sensitive
 
                         string v = string.Empty;
                         for (var ii = 1; ii < s.Length; ii++)
-                            v += s[ii] + separator;
-                        val = v.TrimEnd(separator).Trim().Trim('"');
+                            v += s[ii] + YaffConst.separator;
+                        val = v.TrimEnd(YaffConst.separator).Trim().Trim('"');
                     }
 
                     if (currG != null)
@@ -188,7 +190,7 @@ namespace YaffReader
 
                     if (islabel)
                     {
-                        var label = line.TrimEnd().TrimEnd(separator);
+                        var label = line.TrimEnd().TrimEnd(YaffConst.separator);
                         // If a label element starts and ends with a single-quote character ', these quotes are stripped and the element consists of everything in between.
                         if (label.StartsWith("'") && label.EndsWith("'"))
                             label = label.Trim('\'');
@@ -208,7 +210,7 @@ namespace YaffReader
                     if (isglyph)
                     {
                         if (gindent == 0)
-                            gindent = line.Length - line.TrimStart(whitespace).Length;
+                            gindent = line.Length - line.TrimStart(YaffConst.whitespace).Length;
                         currG.glyphs.Add(line[gindent..].TrimEnd());
                     }
                 }
@@ -287,7 +289,16 @@ namespace YaffReader
                     if (FontProps.TryGetValue("foundry", out string foundry))
                         name = foundry + " " + name;
 
-                    return new YaffPropFont(name, Glyphs);
+                    int width = 0;
+                    int height = 0;
+                    if (FontProps.TryGetValue("bounding-box", out string bb))
+                    {
+                        var bbs = bb.Trim().Split(" ");
+                        int.TryParse(bbs[0], out width);
+                        int.TryParse(bbs[1], out height);
+                    }
+
+                    return new YaffPropFont(name, Glyphs, width, height);
                 }
             }
 
@@ -295,6 +306,9 @@ namespace YaffReader
         }
     }
 
+    /// <summary>
+    /// Represents a Single Character in Yaff Format
+    /// </summary>
     public class YaffGlyph
     {
         public string comment { get; set; }
@@ -311,9 +325,14 @@ namespace YaffReader
 
         YaffFontType Type { get; }
 
+        // All the characters representented by this font
         List<char> CharMap { get; }
 
-        // Some properties for rending proportial fonts ? 
+        // Glyph as Lines instead of rows
+        List<string> GlyphLines(char c);
+
+        // Some properties for rendering proportial fonts ? 
+        (int lb, int rb) GetBearing(char c);
     }
 
     public enum YaffFontType
@@ -336,7 +355,7 @@ namespace YaffReader
         {
             get
             {
-                // Debug.WriteLine($"Looking for {character}");
+                // Console.WriteLine($"Looking for {character}");
 
                 // We need a bitarray for the whole character, not line by line
                 var b = new BitArray(Width * Height);
@@ -368,7 +387,7 @@ namespace YaffReader
                                     modg += bearing[..irb];
                         }
 
-                        //Debug.WriteLine(modg);
+                        //Console.WriteLine(modg);
                         int xx = 0;
                         foreach (var c in modg)
                         {
@@ -439,7 +458,7 @@ namespace YaffReader
             {
                 foreach (var t in gg.labels)
                 {
-                    var tt = t.Trim('"').ToLowerInvariant();
+                    string tt = t.Trim('"').ToLowerInvariant();
                     // hex or unicode
                     if (tt.StartsWith("0x") || tt.StartsWith("u+"))
                     {
@@ -462,19 +481,65 @@ namespace YaffReader
             }
         }
 
+        /// <summary>
+        /// return the glyph as vertical lines instead of horizontal
+        /// </summary>
+        /// <param name="c">character to get lines for</param>
+        /// <returns>List of ink/paper lines</returns>
+        public List<string> GlyphLines(char c)
+        {
+            var yg = GetGlyph(c);
+
+            var height = yg.glyphs.Count;
+            var width = yg.glyphs[0].Length;
+
+            var result = new List<string>();
+
+            // return vertical strips of the ink and empty 
+            for (var i = 0; i < width; i++)
+            {
+                var line = new string(' ', height).ToCharArray();
+                for (var y = 0; y < height; y++)
+                    line[y] = yg.glyphs[y][i];
+
+                result.Add(new string(line));
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// how much bearing to add before and after the character ( can be -ve !)
+        /// </summary>
+        /// <param name="c">character to get bearing for</param>
+        /// <returns>tuple of bearings</returns>
+        public (int lb, int rb) GetBearing(char c)
+        {
+            int lb = 0;
+            int rb = 0;
+            var yg = GetGlyph(c);
+
+            if (yg.props.TryGetValue("left-bearing", out var lbearing))
+                _ = int.TryParse(lbearing, out lb);
+
+            if (yg.props.TryGetValue("right-bearing", out var rbearing))
+                _ = int.TryParse(rbearing, out rb);
+
+            return (lb, rb);
+        }
+
         private YaffGlyph GetGlyph(char character)
         {
             if (glyphs.TryGetValue(character, out YaffGlyph chval))
                 return chval;
+            else if (namedglyphs.TryGetValue("default", out YaffGlyph defval))
+                return defval;
+            else if (namedglyphs.TryGetValue("empty", out YaffGlyph emval))
+                return emval;
+            else if (glyphs.ContainsKey(' '))
+                return glyphs[' '];
             else
-            {
-                if (namedglyphs.TryGetValue("default", out YaffGlyph defval))
-                    return defval;
-                else if (namedglyphs.TryGetValue("empty", out YaffGlyph emval))
-                    return emval;
-                else
-                    return glyphs[' '];
-            }
+                return glyphs[glyphs.Keys.Last()];
         }
 
         private static byte[] BitArrayToByteArray(BitArray bits)
@@ -483,15 +548,25 @@ namespace YaffReader
             bits.CopyTo(ret, 0);
             return ret;
         }
-
     }
 
     public class YaffPropFont : YaffFixedFont
     {
-        public YaffPropFont(string name, List<YaffGlyph> g) : base(0, 0, name, g)
+        public YaffPropFont(string name, List<YaffGlyph> g, int w, int h) : base(0, 0, name, g)
         {
             this.type = YaffFontType.Proportional;
             this.Name = name;
+
+            if (w == 0 || h == 0)
+            {
+                this.width = g[0].glyphs[0].Length;
+                this.height = g[0].glyphs.Count;
+            }
+            else
+            {
+                this.width = w;
+                this.height = h;
+            }
         }
     }
 
@@ -503,8 +578,10 @@ namespace YaffReader
         // Throw away the reader and just return the IFont
         public static IYaffFont GetFont(string filename)
         {
-            var f = Directory.GetFiles(MeadowOS.FileSystem.UserFileSystemRoot, filename).FirstOrDefault();
-            var yfr = new YaYaffReader(f);
+            if (!Path.IsPathFullyQualified(filename))
+                filename = Path.GetFullPath(filename);
+
+            var yfr = new YaYaffReader(filename);
             return yfr.Load_Yaff();
         }
     }

@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using YaffReader;
@@ -32,8 +33,10 @@ namespace MeadowFontTest
             {
                 Showfont(new Font12x20(), Color.LawnGreen);
                 Showfont(new Font8x16(), Color.LightSalmon); // new rc1
+                
                 // consolas has a type initializer fault that is fatal in rc1 & rc2
-                //Showfont(new Consolas12x20(), Color.CornflowerBlue);
+                // Showfont(new Consolas12x20(), Color.CornflowerBlue);
+                
                 Showfont(new IBMPlexMono12x20(), Color.DeepSkyBlue);
                 Showfont(new SometypeMono12x20(), Color.DeepPink);
                 Showfont(new BPtypewrite12x20(), Color.DarkGreen);
@@ -49,11 +52,40 @@ namespace MeadowFontTest
                 Thread.Sleep(5000);
 
                 GFXFonts();
+                Thread.Sleep(5000);
 
                 // Fixed width fonts 12px or thinner
-                YaffFont1();
+                // Wider Fixed Width fonts 
+                YaffFont2();
             }
             return base.Run();
+        }
+
+        public override Task Initialize()
+        {
+            Console.WriteLine("Initializing...");
+
+            var config = new SpiClockConfiguration(St7789.DefaultSpiBusSpeed, SpiClockConfiguration.Mode.Mode3);
+            var spiBus = Device.CreateSpiBus(Device.Pins.SCK, Device.Pins.MOSI, Device.Pins.MISO, config);
+
+            display = new St7789(
+                device: Device,
+                spiBus: spiBus,
+                chipSelectPin: null,
+                dcPin: Device.Pins.D01,
+                resetPin: Device.Pins.D00,
+                width: displayWidth, height: displayHeight);
+
+            graphics = new MicroGraphicsEx(display)
+            {
+                Rotation = RotationType._90Degrees,
+                Stroke = 1
+            };
+
+            allocated = GC.GetAllocatedBytesForCurrentThread();
+
+            graphics.Clear();
+            return base.Initialize();
         }
 
         void GFXFonts()
@@ -133,6 +165,9 @@ namespace MeadowFontTest
             Showfont(new GFXFont_TomThumb(), Color.GreenYellow);
         }
 
+        /// <summary>
+        /// Show anyfont based on type
+        /// </summary>
         void Showfont(IFont font, Color c, ScaleFactor x = ScaleFactor.X1)
         {
             graphics.Clear();
@@ -153,13 +188,16 @@ namespace MeadowFontTest
                 graphics.CurrentFont = font;
                 UnicodeTest(c);
             }
-            else if (font is YaffFixedFont)
+            else if (font is IYaffFont)
             {
                 // Write the name of the Font at the Top
                 graphics.CurrentFont = new Font6x8();
-                graphics.PenColor = Color.LawnGreen;
-                graphics.DrawText(0, 0, ((YaffFixedFont)font).Name);
-                Console.WriteLine(((YaffFixedFont)font).Name);
+                if (font is YaffPropFont)
+                    graphics.PenColor = Color.Orange;
+                else
+                    graphics.PenColor = Color.LawnGreen;
+                graphics.DrawText(0, 0, ((IYaffFont)font).Name);
+                Console.WriteLine(((IYaffFont)font).Name);
 
                 // Display the Font
                 graphics.CurrentFont = font;
@@ -173,33 +211,6 @@ namespace MeadowFontTest
 
             MonitorMemory();
             Thread.Sleep(1000);
-        }
-
-        public override Task Initialize()
-        {
-            Console.WriteLine("Initializing...");
-
-            var config = new SpiClockConfiguration(St7789.DefaultSpiBusSpeed, SpiClockConfiguration.Mode.Mode3);
-            var spiBus = Device.CreateSpiBus(Device.Pins.SCK, Device.Pins.MOSI, Device.Pins.MISO, config);
-
-            display = new St7789(
-                device: Device,
-                spiBus: spiBus,
-                chipSelectPin: null,
-                dcPin: Device.Pins.D01,
-                resetPin: Device.Pins.D00,
-                width: displayWidth, height: displayHeight);
-
-            graphics = new MicroGraphicsEx(display)
-            {
-                Rotation = RotationType._270Degrees,
-                Stroke = 1
-            };
-
-            allocated = GC.GetAllocatedBytesForCurrentThread();
-
-            graphics.Clear();
-            return base.Initialize();
         }
 
         void CharacterTest(Color c)
@@ -401,8 +412,10 @@ namespace MeadowFontTest
 
         #region New For Yaff
 
-        // Show all Fixed Fonts in directory (38)
-        private void YaffFont1()
+        /// <summary>
+        ///  Show all Yaff Fonts in directory - Yaff Fonts are file based, not compiled
+        /// </summary>
+        private void YaffFont2()
         {
             foreach (var x in Directory.GetFiles(MeadowOS.FileSystem.UserFileSystemRoot, "*.yaff"))
             {
@@ -421,7 +434,7 @@ namespace MeadowFontTest
                 }
                 catch (Exception ex)
                 {
-                    Debug.WriteLine(ex.Message + " for " + x);
+                    Console.WriteLine(ex.Message + " for " + x);
                 }
             }
 
@@ -430,38 +443,26 @@ namespace MeadowFontTest
 
         private void YaffCharacterTest(Color c, ScaleFactor x = ScaleFactor.X1)
         {
-            string msg = string.Empty;
+            var msg = new StringBuilder();
 
             int yPos = 12;
-            int count = 0;
 
             foreach (var ch in ((IYaffFont)(graphics.CurrentFont)).CharMap)
-            {
-                if (count >= ((displayWidth - 24) / (graphics.CurrentFont.Width * (int)x)))
-                {
-                    graphics.DrawText(12, yPos, msg, c, x);
-                    Debug.WriteLine(msg);
-                    yPos += (graphics.CurrentFont.Height * (int)x) + 6;
-                    if (graphics.CurrentFont.Height > 12)
-                        yPos -= 3;
-                    else if (graphics.CurrentFont.Height > 8)
-                        yPos -= 2;
+                msg.Append(ch.ToString());
+            msg.Append((char)0xFFF); // a missing "default" char at end - blank in some fonts
 
-                    count = 0;
-                    msg = string.Empty;
-                }
+            graphics.WrapText = true;
 
-                msg += ch;
-                count++;
-            }
-            // a missing "default" char at end - blank in some fonts
-            msg += (char)0xFFF;
+            // This line make the app not crash, but also doesn't output the length
+            Console.WriteLine($"{msg.Length - 1} chars in Yaff font");
 
-            graphics.DrawText(12, yPos, msg, c, x);
-            Debug.WriteLine(msg);
+            // note for fixed yaff fonts that are 12px or smaller and aligned on a nybble boundary
+            // you can use the stardard DrawText
+            graphics.DrawYaffText(12, yPos, msg.ToString(), c, x);
+            Console.WriteLine(msg);
 
             graphics.Show();
-            Debug.WriteLine("");
+            Console.WriteLine("");
         }
 
         // Easter Egg Characters from Atari?
@@ -472,6 +473,7 @@ namespace MeadowFontTest
                 "atari-st-6x6.yaff",
                 "atari-st-8x8.yaff",
                 "atari-st-8x16.yaff",
+                "atari-st-16x32.yaff",
             };
 
             string atariLogo = UnicodeToChar("f82a") + UnicodeToChar("f82b");
@@ -480,9 +482,9 @@ namespace MeadowFontTest
 
             var loadedfonts = new List<IYaffFont>();
             foreach (var f in fonts)
-                loadedfonts.Add(YaffFont.GetFont(f));
+                loadedfonts.Add(YaffFont.GetFont(MeadowOS.FileSystem.UserFileSystemRoot + f));
 
-            int[] lineoffset = { 2, 0, 0 };
+            int[] lineoffset = { 2, 0, 0, 0 };
 
             graphics.Clear();
             for (var i = 0; i < 50; i++)
@@ -491,9 +493,9 @@ namespace MeadowFontTest
                 var sr = rand.Next(4);
                 if (sr == 3)
                     s = ScaleFactor.X4;
-                if (sr == 2)
+                else if (sr == 2)
                     s = ScaleFactor.X3;
-                if (sr == 1)
+                else if (sr == 1)
                     s = ScaleFactor.X2;
 
                 var fontnum = rand.Next(3);
@@ -506,16 +508,16 @@ namespace MeadowFontTest
                     var y = rand.Next(displayHeight);
                     var c = RandColor();
 
-                    graphics.DrawText(x, y, bobtop, c, s);
+                    graphics.DrawYaffText(x, y, bobtop, c, s);
                     var y2 = y + (graphics.CurrentFont.Height - lineoffset[fontnum]) * (int)s;
-                    graphics.DrawText(x, y2, bobbot, c, s);
+                    graphics.DrawYaffText(x, y2, bobbot, c, s);
                 }
                 else
                 {
                     // logo
-                    graphics.DrawText(rand.Next(displayWidth),
-                                      rand.Next(displayHeight),
-                                      atariLogo, RandColor(), s);
+                    graphics.DrawYaffText(rand.Next(displayWidth),
+                                          rand.Next(displayHeight),
+                                          atariLogo, RandColor(), s);
 
                 }
             }
