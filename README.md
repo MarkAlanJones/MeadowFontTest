@@ -12,13 +12,18 @@ Here we demonstrate adding new fonts to the Meadow MicroGraphics Library
 7. Microsoft .NetMF fixed fonts
 8. Petscii - character ROM dump
 9. Release the Hoard! - 37 Fixed width Yaff fonts from the [Bitmap Hoard](https://github.com/robhagemans/hoard-of-bitfonts) 
+10. Font Hoard part II - 11 more wider fixed width fonts, custom Yaff Font Renderer
 
 The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/main/Source/Meadow.Foundation.Libraries_and_Frameworks/Graphics.MicroGraphics">Meadow.Foundation MicroGraphics Library</a>
 supports drawing fonts in a few (now 8) fixed width sizes.  
 
-4x6| 4x8| 6x8| 8x8| 8x12| 8x16| 12x16| 12x20|
-:-:|:-: |:-: |:-: |:-: |:-: |:-: |:-:  |
-![OG Font4x6](ScreenShots/Font4x6.png)|![OG Font4x8](ScreenShots/Font4x8.png)|![OG Font6x8](ScreenShots/Font6x8.png)|![OG Font8x8](ScreenShots/Font8x8.png)|![OG Font8x12](ScreenShots/Font8x12.png)|![OG Font8x16](ScreenShots/Font8x16.png)|![OG Font12x16](ScreenShots/Font12x16.png)|![OG Font12x20](ScreenShots/Font12x20.png)
+4x6| 4x8| 6x8| 
+:-:|:-: |:-: | 
+![OG Font4x6](ScreenShots/Font4x6.png)|![OG Font4x8](ScreenShots/Font4x8.png)|![OG Font6x8](ScreenShots/Font6x8.png)|
+ 8x8| 8x12| 8x16| 
+![OG Font8x8](ScreenShots/Font8x8.png)|![OG Font8x12](ScreenShots/Font8x12.png)|![OG Font8x16](ScreenShots/Font8x16.png)|
+| 12x16| 12x20| |
+![OG Font12x16](ScreenShots/Font12x16.png)|![OG Font12x20](ScreenShots/Font12x20.png)| |
 
 The smaller sizes may be appropriate for hand drawn fonts, but if we are converting higher quality desktop fonts, 12x20 is the only size that can support fonts with descenders.
 These initial attempts target fixed width or Monospaced fonts.
@@ -29,6 +34,8 @@ These initial attempts target fixed width or Monospaced fonts.
 <a href="http://wiki.squeak.org/squeak/1849">Although apparently Fonts are not Copyright protected</a>
 
 So I found 3 open source fonts, which ended up with a much smaller character set
+
+_Note Consolas has an Initialization fault in RC1 and RC2_
 
 ![Consolas Font](ScreenShots/Consolas.png)
 
@@ -239,6 +246,48 @@ Like the Mac fonts, most are proportional. There are also older versions from Wi
 |![Terminal140](ScreenShots/Terminal_140.yaff.png) | ![Terminal8154](ScreenShots/Terminal_8514.yaff.png) | 
 
 
+## Part 2 - Wider fixed width fonts, and a custom Yaff Renderer
 
+The Yaff renderer was designed for proportional fonts, as it takes a vertical slice of the character, and wider characters just have more slices. This is also true of fixed width fonts, and removes any limitations, or alignment requirements.
+
+### Amiga
+
+| Courier 24 15x23 |
+|:----------:|
+|  ![amiga-wb31-courier-24](ScreenShots/amiga-wb31-courier-24.yaff.png) |
+
+### Atari 
+
+| ST 16x32 |
+|:----------:|
+|![ST16x32](ScreenShots/atari-st-16x32.yaff.png) |
+
+### [Geos](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/geos)
+Lots of fonts of various sizes in this set too
+
+| LW Barrows 14x24 |
+|:----------:|
+|![GeosLWBarrows](ScreenShots/LW_Barrows_14x24.yaff.png) |
+
+### OS/2
+Lots of [OS/2](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/os-2) fonts available in various sizes and versions
+
+| Courier 15x25 |
+|:----------:|
+|![OS2Courier15x25](ScreenShots/Courier_15x25.yaff.png) |
+
+### DEC VT-320
+The Graphics Terminal had a larger 15x12 font and character set plus the abilty to add custom fonts
+
+| VT-320 |
+|:----------:|
+|![VT-320](ScreenShots/vt320.yaff.png) |
+
+[VT-320 Fonts](https://vt100.net/dec/vt320/fonts) from [Paul Williams](https://hisdeedsaredust.com/posts/)
+| Boothill | Future | Gothic |
+|:----------:|:-------------:|:---------:|
+![Boothill](ScreenShots/boothill.yaff.png)|![Future](ScreenShots/future.yaff.png)|![Gothic](ScreenShots/gothic.yaff.png) |
+| Jetpac | Mercy | Powerslave |
+![Jetpac](ScreenShots/jetpac.yaff.png)|![Mercy](ScreenShots/mercy.yaff.png)|![Powerslave](ScreenShots/powerslave.yaff.png) |
 
 
