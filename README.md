@@ -250,6 +250,8 @@ Like the Mac fonts, most are proportional. There are also older versions from Wi
 
 The Yaff renderer was designed for proportional fonts, as it takes a vertical slice of the character, and wider characters just have more slices. This is also true of fixed width fonts, and removes any limitations, or alignment requirements.
 
+The YaffReader is used to read the yaff files, and the MicroGraphicsEx extension has a DrawYaffText method similar to DrawGFXText and the default DrawText in the base library. DrawYaffText can wrap text automatically, again similar to the DrawGFXText method.
+
 ### Amiga
 
 | Courier 24 15x23 |
