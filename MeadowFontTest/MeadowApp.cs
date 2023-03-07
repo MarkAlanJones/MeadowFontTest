@@ -31,32 +31,53 @@ namespace MeadowFontTest
         {
             while (graphics != null)
             {
+                graphics.CurrentFont = new Font8x16();
+                graphics.DrawBigCenteredText("Meadow", Color.LawnGreen, clear: true, show: true);
+                Thread.Sleep(2000);
+
                 Showfont(new Font12x20(), Color.LawnGreen);
                 Showfont(new Font8x16(), Color.LightSalmon); // new rc1
-                
+
+                graphics.CurrentFont = new IBMPlexMono12x20();
+                graphics.DrawBigCenteredText("Convert", Color.DeepSkyBlue, clear: true, show: true);
+                Thread.Sleep(2000);
                 // consolas has a type initializer fault that is fatal in rc1 & rc2
                 // Showfont(new Consolas12x20(), Color.CornflowerBlue);
-                
+
                 Showfont(new IBMPlexMono12x20(), Color.DeepSkyBlue);
                 Showfont(new SometypeMono12x20(), Color.DeepPink);
                 Showfont(new BPtypewrite12x20(), Color.DarkGreen);
                 Showfont(new ibm327012x20(), Color.AliceBlue);
 
+                graphics.CurrentFont = new MSFont8x15();
+                graphics.DrawBigCenteredText(".NetMF", Color.LightYellow, clear: true, show: true);
+                Thread.Sleep(2000);
                 Showfont(new MSFont8x8(), Color.LightYellow);
                 Showfont(new MSFont8x15(), Color.LightYellow);
 
+                graphics.CurrentFont = new Petscii8x8();
+                graphics.DrawBigCenteredText("PETscii", Color.Green, clear: true, show: true);
+                Thread.Sleep(2000);
                 // unicode PETscii with symbols from 1977 Commodore PET
                 Showfont(new Petscii8x8(), Color.Green);
 
                 FontTest();
                 Thread.Sleep(5000);
 
+                graphics.CurrentFont = new Font8x16();
+                graphics.DrawBigCenteredText("GFX", Color.Orange, clear: true, show: true);
+                Thread.Sleep(2000);
                 GFXFonts();
                 Thread.Sleep(5000);
 
                 // Fixed width fonts 12px or thinner
                 // Wider Fixed Width fonts 
-                YaffFont2();
+                // note pick a yaff font that the base drawtext can deal with for DBCT
+                // Proportional Mac Lisa others
+                graphics.CurrentFont = YaffFont.GetFont(MeadowOS.FileSystem.UserFileSystemRoot + "Terminal_8514.yaff");
+                graphics.DrawBigCenteredText("Yaff", Color.LightSteelBlue, clear: true, show: true);
+                Thread.Sleep(2000);
+                YaffFont3();
             }
             return base.Run();
         }
@@ -69,7 +90,6 @@ namespace MeadowFontTest
             var spiBus = Device.CreateSpiBus(Device.Pins.SCK, Device.Pins.MOSI, Device.Pins.MISO, config);
 
             display = new St7789(
-                device: Device,
                 spiBus: spiBus,
                 chipSelectPin: null,
                 dcPin: Device.Pins.D01,
@@ -188,7 +208,7 @@ namespace MeadowFontTest
                 graphics.CurrentFont = font;
                 UnicodeTest(c);
             }
-            else if (font is IYaffFont)
+            else if (font is IYaffFont yafffont)
             {
                 // Write the name of the Font at the Top
                 graphics.CurrentFont = new Font6x8();
@@ -196,8 +216,8 @@ namespace MeadowFontTest
                     graphics.PenColor = Color.Orange;
                 else
                     graphics.PenColor = Color.LawnGreen;
-                graphics.DrawText(0, 0, ((IYaffFont)font).Name);
-                Console.WriteLine(((IYaffFont)font).Name);
+                graphics.DrawText(0, 0, yafffont.Name);
+                Console.WriteLine($"{yafffont.Name}");
 
                 // Display the Font
                 graphics.CurrentFont = font;
@@ -415,22 +435,22 @@ namespace MeadowFontTest
         /// <summary>
         ///  Show all Yaff Fonts in directory - Yaff Fonts are file based, not compiled
         /// </summary>
-        private void YaffFont2()
+        private void YaffFont3()
         {
-            foreach (var x in Directory.GetFiles(MeadowOS.FileSystem.UserFileSystemRoot, "*.yaff"))
+            var sortedYaffFiles = Directory.GetFiles(MeadowOS.FileSystem.UserFileSystemRoot, "*.yaff")
+                                 .OrderBy(name => name);
+            foreach (var x in sortedYaffFiles)
             {
                 try
                 {
+                    Console.WriteLine(x);
                     var yaff = new YaYaffReader(x);
                     var yf = yaff.Load_Yaff();
 
-                    if (yf.Type == YaffFontType.Fixed)
-                    {
-                        graphics.CurrentFont = yf;
+                    graphics.CurrentFont = yf;
 
-                        Showfont(yf, Color.LightSteelBlue, ScaleFactor.X1);
-                        Thread.Sleep(500);
-                    }
+                    Showfont(yf, Color.LightSteelBlue, ScaleFactor.X1);
+                    Thread.Sleep(500);
                 }
                 catch (Exception ex)
                 {
@@ -439,6 +459,10 @@ namespace MeadowFontTest
             }
 
             CultofAtari();
+
+            Apples();
+            Thread.Sleep(5000);
+
         }
 
         private void YaffCharacterTest(Color c, ScaleFactor x = ScaleFactor.X1)
@@ -452,8 +476,6 @@ namespace MeadowFontTest
             msg.Append((char)0xFFF); // a missing "default" char at end - blank in some fonts
 
             graphics.WrapText = true;
-
-            // This line make the app not crash, but also doesn't output the length
             Console.WriteLine($"{msg.Length - 1} chars in Yaff font");
 
             // note for fixed yaff fonts that are 12px or smaller and aligned on a nybble boundary
@@ -486,6 +508,7 @@ namespace MeadowFontTest
 
             int[] lineoffset = { 2, 0, 0, 0 };
 
+            graphics.WrapText = false;
             graphics.Clear();
             for (var i = 0; i < 50; i++)
             {
@@ -522,7 +545,69 @@ namespace MeadowFontTest
                 }
             }
             graphics.Show();
-            Thread.Sleep(5000);
+        }
+
+        private void Apples()
+        {
+            var fonts = new List<string>()
+            {
+                "Chicago_12.yaff",
+                "Courier_18.yaff",
+                "Cream_12.yaff",
+                "Espy_Sans_16.yaff",
+                "Espy_Sans_Bold_12.yaff",
+                "Espy_Sans_Bold_14.yaff",
+                "Espy_Serif_Bold_14.yaff",
+                "eWorld_Tight_18.yaff",
+                "Helvetica_12.yaff",
+                "Palatino_14.yaff",
+                "Palatino_18.yaff",
+                "Symbol_12.yaff",
+                "Symbol_18.yaff",
+                "System_Text.yaff",       // Lisa
+                "Window_Manager.yaff",    // Lisa
+            };
+
+            string apple = UnicodeToChar("f8ff");
+            string applecream = UnicodeToChar("00c4");
+            string lisaapple = UnicodeToChar("0e");
+            string lisawin = UnicodeToChar("8f");
+
+            var loadedfonts = new List<IYaffFont>();
+            foreach (var f in fonts)
+                loadedfonts.Add(YaffFont.GetFont(MeadowOS.FileSystem.UserFileSystemRoot + f));
+
+            graphics.WrapText = false;
+            graphics.Clear();
+            for (var i = 0; i < 75; i++)
+            {
+                ScaleFactor s = ScaleFactor.X1;
+                var sr = rand.Next(4);
+                if (sr == 3)
+                    s = ScaleFactor.X4;
+                if (sr == 2)
+                    s = ScaleFactor.X3;
+                if (sr == 1)
+                    s = ScaleFactor.X2;
+
+                var fontnum = rand.Next(loadedfonts.Count);
+                graphics.CurrentFont = loadedfonts[fontnum];
+
+                // why does this font have the apple at a differnt character?
+                string c = apple;
+                if (loadedfonts[fontnum].Name == "Cream Regular 12")
+                    c = applecream;
+                else if (loadedfonts[fontnum].Name == "System Text")
+                    c = lisaapple;
+                else if (loadedfonts[fontnum].Name == "Window Manager")
+                    c = lisawin;
+
+                graphics.DrawYaffText(rand.Next(displayWidth),
+                                      rand.Next(displayHeight),
+                                      c, RandColor(), s);
+
+            }
+            graphics.Show();
         }
 
         private static string UnicodeToChar(string hex)

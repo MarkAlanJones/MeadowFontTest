@@ -9,15 +9,53 @@
     <None Remove="abtastfernschreiber-8x14.yaff" />
     <None Remove="amiga-wb31-courier-24.yaff" />
     <None Remove="atari-st-16x32.yaff" />
+    <None Remove="Athens_18.yaff" />
     <None Remove="boothill.yaff" />
+    <None Remove="bsd-banner.yaff" />
+    <None Remove="Cairo_18.yaff" />
+    <None Remove="Chicago_12.yaff" />
+    <None Remove="Classic_12pt_10.yaff" />
+    <None Remove="Classic_18pt.yaff" />
+    <None Remove="Classic_24pt.yaff" />
     <None Remove="Courier_15x25.yaff" />
+    <None Remove="Courier_18.yaff" />
+    <None Remove="Cream_12.yaff" />
+    <None Remove="epson-fx80-fx100.yaff" />
+    <None Remove="Espy_Sans_16.yaff" />
+    <None Remove="Espy_Sans_Bold_12.yaff" />
+    <None Remove="Espy_Sans_Bold_14.yaff" />
+    <None Remove="Espy_Serif_Bold_14.yaff" />
+    <None Remove="eWorld_Tight_18.yaff" />
     <None Remove="future.yaff" />
+    <None Remove="Geneva_18.yaff" />
     <None Remove="gothic.yaff" />
+    <None Remove="Helvetica_12.yaff" />
     <None Remove="jetpac.yaff" />
+    <None Remove="London_18.yaff" />
+    <None Remove="Los_Angeles_24.yaff" />
     <None Remove="LW_Barrows_14x24.yaff" />
     <None Remove="mercy.yaff" />
+    <None Remove="Mobile_18.yaff" />
+    <None Remove="Modern_14pt.yaff" />
+    <None Remove="Modern_24pt.yaff" />
+    <None Remove="Monaco_6x16.yaff" />
+    <None Remove="New_York_24.yaff" />
+    <None Remove="New_York_36.yaff" />
+    <None Remove="Palatino_14.yaff" />
+    <None Remove="Palatino_18.yaff" />
     <None Remove="powerslave.yaff" />
+    <None Remove="San_Francisco_18.yaff" />
+    <None Remove="Symbol_12.yaff" />
+    <None Remove="Symbol_18.yaff" />
+    <None Remove="System_12.yaff" />
+    <None Remove="System_EGA.yaff" />
+    <None Remove="System_Patterns.yaff" />
+    <None Remove="System_Text.yaff" />
+    <None Remove="toolkit.yaff" />
+    <None Remove="Toronto_24.yaff" />
+    <None Remove="Venice_14.yaff" />
     <None Remove="vt320.yaff" />
+    <None Remove="Window_Manager.yaff" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="abtastfernschreiber-8x14.yaff">
@@ -92,13 +130,58 @@
     <Content Include="atascii.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Athens_18.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="boothill.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="bsd-banner.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cairo_18.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Chicago_12.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Classic_12pt_10.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Classic_18pt.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Classic_24pt.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Courier_15x25.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Courier_18.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Cream_12.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="drdos-6v-sbcs-8x19.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="epson-fx80-fx100.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Espy_Sans_16.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Espy_Sans_Bold_12.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Espy_Sans_Bold_14.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Espy_Serif_Bold_14.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="eWorld_Tight_18.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="feld-hell-tbs24a-7x14.yaff">
@@ -113,6 +196,9 @@
     <Content Include="gem-3.1-6x6.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Geneva_18.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="gothic.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -122,7 +208,16 @@
     <Content Include="hell80-7x9.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Helvetica_12.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="jetpac.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="London_18.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Los_Angeles_24.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="LW_Barrows_14x24.yaff">
@@ -131,13 +226,58 @@
     <Content Include="mercy.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Mobile_18.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Modern_14pt.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Modern_24pt.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Monaco_6x16.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Monaco_7x16.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="New_York_24.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="New_York_36.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="olivetti-m10-us.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Palatino_14.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Palatino_18.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="powerslave.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="San_Francisco_18.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Symbol_12.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Symbol_18.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System_12.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System_EGA.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System_Patterns.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="System_Text.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="t-typ72-gl-7x14.yaff">
@@ -147,6 +287,15 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Terminal_8514.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="toolkit.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Toronto_24.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Venice_14.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="viewmax-2-8x8.yaff">
@@ -164,13 +313,16 @@
     <Content Include="vt52.yaff">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Window_Manager.yaff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.F7" Version="0.94.2" />
-    <PackageReference Include="Meadow.Foundation" Version="0.94.2" />
+    <PackageReference Include="Meadow.F7" Version="0.95.0" />
+    <PackageReference Include="Meadow.Foundation" Version="0.95.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.94.2" />
+    <PackageReference Include="Meadow.Foundation.Displays.TftSpi" Version="0.95.0" />
   </ItemGroup>
   <ItemGroup>
     <None Update="meadow.config.yaml">

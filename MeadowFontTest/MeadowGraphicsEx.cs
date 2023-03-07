@@ -110,13 +110,20 @@ namespace Meadow.Foundation.MyExtensions
             IYaffFont yaffFont = (IYaffFont)CurrentFont;
             CursorX = xPos;
             CursorY = yPos;
-            PenColor = color;  // all the text is the same color
 
             // each character
             for (int i = 0; i < text.Length; i++)
             {
                 var c = yaffFont.GlyphLines(text[i]);
                 (var lb, var rb) = yaffFont.GetBearing(text[i]);
+
+                // Detect wrapping first, so we have the actual width of the charcter not the ifont width of the font
+                var cw = (int)scaleFactor * (lb + yaffFont.GetWidth(text[i]) + rb);
+                if (WrapText && (xPos >= display.Width - cw))
+                {
+                    xPos = CursorX;
+                    CursorY += (c[0].Length + 1) * (int)scaleFactor;
+                }
 
                 xPos += lb * (int)scaleFactor; // left bearing
                 foreach (var line in c)
@@ -129,19 +136,26 @@ namespace Meadow.Foundation.MyExtensions
                         {
                             for (var k = 0; k < (int)scaleFactor; k++)
                                 for (var l = 0; l < (int)scaleFactor; l++)
-                                    DrawPixel(xPos + k, CursorY + j + l);
+                                    DrawPixel(xPos + k, CursorY + j + l, color);
                         }
                     }
                     xPos += (int)scaleFactor;
                 }
                 xPos += rb * (int)scaleFactor; // right bearing
-
-                if (WrapText && (xPos >= display.Width - (Math.Max(yaffFont.Width, c.Count + lb + rb) * (int)scaleFactor)))
-                {
-                    xPos = CursorX;
-                    CursorY += (c[0].Length + 1) * (int)scaleFactor;
-                }
             }
+        }
+
+        public void DrawBigCenteredText(string text, Color color, bool clear = true, bool show = true)
+        {
+            if (clear)
+                Clear(true);
+
+            ScaleFactor big = ScaleFactor.X3;
+            DrawText(((int)display.Width - CurrentFont.Width * text.Length * (int)big) / 2,
+                      ((int)display.Height - CurrentFont.Height * (int)big) / 2,
+                      text, color, big);
+            if (show)
+                Show();
         }
 
     }

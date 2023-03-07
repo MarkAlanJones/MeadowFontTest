@@ -281,7 +281,8 @@ namespace YaffReader
                     return new YaffFixedFont(w, h, name, Glyphs);
                 }
 
-                else if (FontProps["spacing"] == "proportional")
+                else if (FontProps["spacing"] == "proportional" ||
+                         FontProps["spacing"] == "multi-cell")
                 {
                     var name = Path.GetFileNameWithoutExtension(filename);
                     if (FontProps.TryGetValue("name", out string fontname))
@@ -299,6 +300,10 @@ namespace YaffReader
                     }
 
                     return new YaffPropFont(name, Glyphs, width, height);
+                }
+                else
+                {
+                    throw new InvalidOperationException($"Yaff font has unknown spacing {FontProps["spacing"]} {filename}");
                 }
             }
 
@@ -333,6 +338,8 @@ namespace YaffReader
 
         // Some properties for rendering proportial fonts ? 
         (int lb, int rb) GetBearing(char c);
+        int GetWidth(char c);
+        int GetHeight(char c);
     }
 
     public enum YaffFontType
@@ -547,6 +554,18 @@ namespace YaffReader
             byte[] ret = new byte[(bits.Length - 1) / 8 + 1];
             bits.CopyTo(ret, 0);
             return ret;
+        }
+
+        public int GetWidth(char c)
+        {
+            var yg = GetGlyph(c);
+            return yg.glyphs[0].Length;
+        }
+
+        public int GetHeight(char c)
+        {
+            var yg = GetGlyph(c);
+            return yg.glyphs.Count;
         }
     }
 
