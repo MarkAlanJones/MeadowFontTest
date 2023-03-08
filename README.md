@@ -13,6 +13,7 @@ Here we demonstrate adding new fonts to the Meadow MicroGraphics Library
 8. Petscii - character ROM dump
 9. Release the Hoard! - 37 Fixed width Yaff fonts from the [Bitmap Hoard](https://github.com/robhagemans/hoard-of-bitfonts) 
 10. Font Hoard part II - 11 more wider fixed width fonts, custom Yaff Font Renderer
+11. Font Hoard part III - 39 Proportional Yaff fonts, mostly Mac and Lisa from the [Bitmap Hoard](https://github.com/robhagemans/hoard-of-bitfonts) 
 
 The <a href="https://github.com/WildernessLabs/Meadow.Foundation/tree/main/Source/Meadow.Foundation.Libraries_and_Frameworks/Graphics.MicroGraphics">Meadow.Foundation MicroGraphics Library</a>
 supports drawing fonts in a few (now 8) fixed width sizes.  
@@ -292,4 +293,35 @@ The Graphics Terminal had a larger 15x12 font and character set plus the abilty 
 | Jetpac | Mercy | Powerslave |
 ![Jetpac](ScreenShots/jetpac.yaff.png)|![Mercy](ScreenShots/mercy.yaff.png)|![Powerslave](ScreenShots/powerslave.yaff.png) |
 
+## Part 3 - Proportional Yaff Fonts - mostly Mac and Lisa
 
+### [Mac](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/apple/mac)
+| Athens | Chicago | Geneva | London | Los Angeles |
+|:----------:|:-------------:|:---------:|:----------:|:-------------:|
+![Athens 18](ScreenShots/Athens_18.yaff.png)| ![Chicago 12](ScreenShots/Chicago_12.yaff.png)|  ![Geneva 18](ScreenShots/Geneva_18.yaff.png)|  ![London 18](ScreenShots/London_18.yaff.png)|  ![Los Angeles 24](ScreenShots/Los_Angeles_24.yaff.png)|
+| Monaco Prop | Monaco Fixed | New York 24 |  New York 36 | San Franciso  |
+![Monoco 6](ScreenShots/Monaco_6x16.yaff.png)|![Monoco 7](ScreenShots/Monaco_7x16.yaff.png)| ![New York 24](ScreenShots/New_York_24.yaff.png)|  ![New York 36](ScreenShots/New_York_36.yaff.png)| ![San Franciso 18](ScreenShots/San_Francisco_18.yaff.png) |
+| Toronto   | Venice   | Cairo | Mobil | System |
+![Toronto 24](ScreenShots/Toronto_24.yaff.png)|![Venice 14](ScreenShots/Venice_14.yaff.png)| ![Cairo 18](ScreenShots/Cairo_18.yaff.png)|  ![Mobile 18](ScreenShots/Mobile_18.yaff.png)| ![System 12](ScreenShots/System_12.yaff.png)| 
+| Courier | Cream | eWorld | Helvetica | 
+![Courier 18](ScreenShots/Courier_18.yaff.png)| ![Cream 12](ScreenShots/Cream_12.yaff.png)| ![eWorld tight 18](ScreenShots/eWorld_Tight_18.yaff.png)| ![Helvetica 12](ScreenShots/Helvetica_12.yaff.png)| 
+| Symbol 12 | Symbol 18 |Palatino 14 | Palatino 18 |
+![Symbol 12](ScreenShots/Symbol_12.yaff.png)| ![Symbol 18](ScreenShots/Symbol_18.yaff.png)| ![Palatino 14](ScreenShots/Palatino_14.yaff.png)| ![Palatino 18](ScreenShots/Palatino_18.yaff.png)| 
+| Espy Sans | Espy Bold 12| Espy Bold 14| Espy Serif
+![Espy 16](ScreenShots/Espy_Sans_16.yaff.png)| ![Espy Bold 12](ScreenShots/Espy_Sans_Bold_12.yaff.png)| ![Espy Bold 14](ScreenShots/Espy_Sans_Bold_14.yaff.png)| ![Espy Serif](ScreenShots/Espy_Serif_Bold_14.yaff.png)| ![apples](ScreenShots/Apples.png)
+
+### [Lisa](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/apple/lisa)
+
+| Classic 12| classic 18| Classic 24||
+|:----------:|:-------------:|:---------:|:----------:|
+![Classic 12pt](ScreenShots/Classic_12pt_10.yaff.png)| ![Classic 18pt](ScreenShots/Classic_18pt.yaff.png)| ![Classic 24pt](ScreenShots/Classic_24pt.yaff.png)|
+| Modern 14| Modern 24| System Patterns| System Text|
+![Modern 14pt](ScreenShots/Modern_14pt.yaff.png)| ![Modern 24pt](ScreenShots/Modern_24pt.yaff.png)| ![System Patterns](ScreenShots/System_Patterns.yaff.png) |  ![System Text](ScreenShots/System_Text.yaff.png)
+| Toolkit | Window Manager |
+![Toolkit](ScreenShots/toolkit.yaff.png)| ![Window Manager](ScreenShots/Window_Manager.yaff.png)| 
+
+### Others
+
+| BSD Banner | Epson FX Printer | Windows EGA System
+|:----------:|:-------------:|:---------:|
+![BSD Banner](ScreenShots/bsd-banner.yaff.png)| ![Epson](ScreenShots/epson-fx80-fx100.yaff.png)| ![EGA](ScreenShots/System_EGA.yaff.png)
