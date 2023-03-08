@@ -194,7 +194,7 @@ This consumes more memory than compiling the fonts, but being able to treat the 
 | Courier |
 | ![amiga-wb31-courier-11](ScreenShots/amiga-wb31-courier-11.yaff.png) | ![amiga-wb31-courier-13](ScreenShots/amiga-wb31-courier-13.yaff.png) | ![amiga-wb31-courier-15](ScreenShots/amiga-wb31-courier-15.yaff.png) |  ![amiga-wb31-courier-18](ScreenShots/amiga-wb31-courier-18.yaff.png) |
 
-### Apple [Mac](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/apple-mac)
+### Apple [Mac](https://github.com/robhagemans/hoard-of-bitfonts/tree/master/apple/mac)
 
 Gacha and Monaco are two of the few fixed Mac Fonts. There are a few slightly smaller versions of both.
 
