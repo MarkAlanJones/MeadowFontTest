@@ -1,5 +1,4 @@
-﻿using Meadow.Foundation.Displays;
-using Meadow.Foundation.Graphics;
+﻿using Meadow.Foundation.Graphics;
 using System;
 using YaffReader;
 
