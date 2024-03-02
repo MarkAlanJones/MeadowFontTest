@@ -1,4 +1,5 @@
 ﻿using Meadow.Foundation.Graphics;
+using Meadow.Peripherals.Displays;
 using System;
 using YaffReader;
 
@@ -7,9 +8,9 @@ namespace Meadow.Foundation.MyExtensions
     // Extend the GraphicsLibrary 
     public class MicroGraphicsEx : MicroGraphics
     {
-        new IGraphicsDisplay display;
+        new readonly IPixelDisplay display;
 
-        public MicroGraphicsEx(IGraphicsDisplay display) : base(display)
+        public MicroGraphicsEx(IPixelDisplay display) : base(display)
         {
             this.display = display;
         }
@@ -159,7 +160,7 @@ namespace Meadow.Foundation.MyExtensions
 
     }
 
-    public static class extensions
+    public static class Extensions
     {
         public static bool GetBit(this byte b, int bitNumber)
         {

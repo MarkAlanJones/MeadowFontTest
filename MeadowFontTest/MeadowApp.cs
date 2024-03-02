@@ -3,6 +3,7 @@ using Meadow.Devices;
 using Meadow.Foundation.Displays;
 using Meadow.Foundation.Graphics;
 using Meadow.Foundation.MyExtensions;
+using Meadow.Peripherals.Displays;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -331,7 +332,6 @@ namespace MeadowFontTest
 
             graphics.CurrentFont = new Petscii8x8();
             graphics.DrawText(0, yPos, "Petscii8x8: ABCdef123@#$" + (char)0x2592 + (char)0x2593 + (char)0x25cf + (char)0x25f7 + (char)0x25f8, Color.Green);
-            yPos += 12;
 
             graphics.Show();
         }
