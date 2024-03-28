@@ -86,11 +86,11 @@ namespace Meadow.Foundation.Graphics
 
         public int Height => gfxfont.yAdvance - 1;
 
-        public byte yAdvance => gfxfont.yAdvance;
+        public byte YAdvance => gfxfont.yAdvance;
 
-        public byte first => gfxfont.first;
+        public byte First => gfxfont.first;
 
-        public byte last => gfxfont.last;
+        public byte Last => gfxfont.last;
 
     };
 }

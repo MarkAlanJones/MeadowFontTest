@@ -77,7 +77,7 @@ namespace Meadow.Foundation.MyExtensions
                     if (CursorX > display.Width - ((GFXFontBase)CurrentFont).Width)
                     {
                         CursorX = xPos; // assume original xPos was left margin
-                        CursorY += ((GFXFontBase)CurrentFont).yAdvance;
+                        CursorY += ((GFXFontBase)CurrentFont).YAdvance;
                     }
                 }
             }

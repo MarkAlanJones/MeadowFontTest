@@ -20,7 +20,7 @@ namespace Meadow.Foundation.Graphics
         {
             get
             {
-                return getGlyph(character);
+                return GetGlyph(character);
             }
         }
 
@@ -28,7 +28,7 @@ namespace Meadow.Foundation.Graphics
         ///  Map Ascii values to characters - Unicode 0020-FF3F
         /// </summary>
         /// <param name="c"></param>
-        private byte[] getGlyph(char c)
+        private byte[] GetGlyph(char c)
         {
             switch ((ushort)c)
             {

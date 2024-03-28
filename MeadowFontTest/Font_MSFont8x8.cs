@@ -1751,7 +1751,7 @@ namespace Meadow.Foundation.Graphics
             int cc = c & 0xFF;
 
             if (cc > 0x1F && cc < 0x7F)
-                cc = cc - 0x20;
+                cc -= 0x20;
             else if (cc > 0x9F)
                 cc = cc - 0x20 - (0xA0 - 0x7F);
             else

@@ -344,7 +344,7 @@ namespace MeadowFontTest
             string msg = string.Empty;
             int yPos = Math.Max(12 + ((GFXFontBase)graphics.CurrentFont).Height, 24);
 
-            for (int i = ((GFXFontBase)graphics.CurrentFont).first; i <= ((GFXFontBase)graphics.CurrentFont).last; i++)
+            for (int i = ((GFXFontBase)graphics.CurrentFont).First; i <= ((GFXFontBase)graphics.CurrentFont).Last; i++)
                 msg += (char)(i);
 
             graphics.WrapText = true;
